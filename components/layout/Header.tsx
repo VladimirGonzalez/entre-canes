@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -8,7 +9,6 @@ import {
   Menu,
   X,
   MessageCircle,
-  PawPrint,
   ChevronDown,
   ArrowRight,
 } from "lucide-react";
@@ -64,11 +64,18 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 text-brand-ink"
+            className="flex items-center gap-2.5 text-brand-ink"
             aria-label="Entre Canes — Inicio"
           >
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-ink text-white">
-              <PawPrint className="h-5 w-5" strokeWidth={2.25} />
+            <span className="relative grid h-11 w-11 place-items-center overflow-hidden rounded-full bg-white ring-1 ring-brand-line">
+              <Image
+                src="/logo.png"
+                alt="Entre Canes"
+                width={44}
+                height={44}
+                priority
+                className="h-11 w-11 object-contain"
+              />
             </span>
             <div className="flex flex-col leading-tight">
               <span className="text-sm font-semibold tracking-tight">

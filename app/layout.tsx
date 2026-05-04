@@ -38,6 +38,11 @@ export const metadata: Metadata = {
     "Buenos Aires",
   ],
   alternates: { canonical: "/" },
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+    shortcut: "/favicon.ico",
+  },
   openGraph: {
     type: "website",
     locale: "es_AR",
@@ -45,11 +50,20 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: `${SITE.name} — Adiestramiento canino con método`,
     description: SITE.description,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: `${SITE.name} — Escuela canina`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name} — Adiestramiento canino con método`,
     description: SITE.description,
+    images: ["/og.png"],
   },
   robots: {
     index: true,

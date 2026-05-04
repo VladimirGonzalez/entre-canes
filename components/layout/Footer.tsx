@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Instagram, Facebook, Mail, Phone, MessageCircle, PawPrint } from "lucide-react";
+import Image from "next/image";
+import { Instagram, Facebook, Mail, Phone, MessageCircle } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import {
   CONTACT,
@@ -18,9 +19,15 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-12">
           {/* Brand column */}
           <div className="lg:col-span-5">
-            <Link href="/" className="inline-flex items-center gap-2">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-ink text-white">
-                <PawPrint className="h-5 w-5" strokeWidth={2.25} />
+            <Link href="/" className="inline-flex items-center gap-2.5">
+              <span className="relative grid h-11 w-11 place-items-center overflow-hidden rounded-full bg-white ring-1 ring-brand-line">
+                <Image
+                  src="/logo.png"
+                  alt="Entre Canes"
+                  width={44}
+                  height={44}
+                  className="h-11 w-11 object-contain"
+                />
               </span>
               <span className="text-base font-semibold tracking-tight text-brand-ink">
                 {SITE.name}
