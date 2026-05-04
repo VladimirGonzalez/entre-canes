@@ -1,6 +1,6 @@
 # Entre Canes — Website
 
-Web oficial de **Entre Canes**: escuela canina, adiestramiento, modificación de conducta, GICC y venta de accesorios.
+Web oficial de **Entre Canes**: escuela canina, adiestramiento, modificación de conducta, Grupos GIC (Grupos de Interacción Canina) y venta de accesorios.
 
 > Construida como producto real, con foco 100% en conversión: WhatsApp en cada CTA, sticky mobile, FAQ que elimina objeciones, prueba social y método claro.
 
@@ -35,7 +35,7 @@ Abrí `http://localhost:3000`.
 
 | Variable | Descripción |
 |---|---|
-| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Número de WhatsApp en formato internacional sin `+` (ej: `5491112345678`) |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Número de WhatsApp en formato internacional sin `+` (ej: `5491128671420`) |
 | `NEXT_PUBLIC_PHONE` | Teléfono visible en el sitio |
 | `NEXT_PUBLIC_EMAIL` | Email de contacto |
 | `NEXT_PUBLIC_SITE_URL` | URL canónica del sitio |
@@ -51,7 +51,8 @@ app/
 ├── globals.css             # Tokens y estilos base
 ├── sitemap.ts / robots.ts  # SEO
 ├── servicios/              # Servicios
-├── gicc/                   # GICC — landing dedicada de alto impacto
+├── gic/                    # Grupos GIC — landing dedicada de alto impacto
+├── gicc/                   # Redirect 308 → /gic (legacy URL)
 ├── tienda/                 # Tienda
 ├── sobre-nosotros/
 ├── resultados/
@@ -73,7 +74,8 @@ lib/
 - `cta_whatsapp_click` — clic en cualquier botón de WhatsApp
 - `cta_reservar_click` — clic en "Reservar evaluación gratis"
 - `form_submit` — envío del formulario de contacto
-- `gicc_view` — vista de la landing GICC
+- `gic_view` — vista de la landing GIC
+- `cta_gic_grupo_click` — clic en una card o item de grupo GIC
 - `faq_open` — apertura de pregunta del FAQ
 
 Disparados con `gtag` y `fbq` (si los IDs están configurados).

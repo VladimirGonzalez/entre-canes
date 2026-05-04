@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 const TOPICS = [
   { value: "evaluacion", label: "Evaluación inicial gratuita" },
   { value: "conducta", label: "Modificación de conducta" },
-  { value: "gicc", label: "GICC — Grupos de socialización" },
+  { value: "gic", label: "Grupos GIC — Interacción canina" },
   { value: "cachorro", label: "Educación temprana cachorros" },
   { value: "domicilio", label: "Asesoramiento a domicilio" },
   { value: "tienda", label: "Consulta sobre tienda" },

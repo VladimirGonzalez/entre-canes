@@ -7,7 +7,7 @@ const ITEMS = [
   "Atención cercana",
   "Cupos limitados",
   "Sesiones presenciales y a domicilio",
-  "GICC original",
+  "Grupos GIC originales",
   "Resultados medibles",
 ];
 

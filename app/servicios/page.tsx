@@ -10,7 +10,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 export const metadata: Metadata = {
   title: "Servicios — Adiestramiento, conducta y educación canina",
   description:
-    "Programas de adiestramiento básico, modificación de conducta, GICC y educación temprana para cachorros. Plan a medida. Resultados sostenibles.",
+    "Programas de adiestramiento básico, modificación de conducta, Grupos GIC y educación temprana para cachorros. Plan a medida. Resultados sostenibles.",
 };
 
 export default function ServiciosPage() {

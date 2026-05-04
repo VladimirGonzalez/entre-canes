@@ -82,10 +82,10 @@ export function Footer() {
               ))}
               <li>
                 <Link
-                  href="/gicc"
+                  href="/gic"
                   className="text-brand-slate transition-colors hover:text-brand-ink"
                 >
-                  GICC — Grupos de socialización
+                  Grupos GIC — Interacción canina
                 </Link>
               </li>
               <li>

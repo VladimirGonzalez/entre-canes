@@ -24,8 +24,9 @@ export type EventName =
   | "cta_whatsapp_click"
   | "cta_reservar_click"
   | "cta_servicio_click"
+  | "cta_gic_grupo_click"
   | "form_submit"
-  | "gicc_view"
+  | "gic_view"
   | "faq_open"
   | "tienda_producto_click";
 
