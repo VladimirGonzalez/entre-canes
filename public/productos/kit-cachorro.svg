@@ -1,0 +1,53 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kit Cachorro Entre Canes">
+  <!-- Soft amber backdrop circle -->
+  <circle cx="400" cy="300" r="220" fill="#F59E0B" opacity="0.10"/>
+  <circle cx="400" cy="300" r="160" fill="#F59E0B" opacity="0.08"/>
+
+  <!-- Shopping bag (kit) -->
+  <g transform="translate(290, 200)">
+    <!-- Handles -->
+    <path d="M 40 40 Q 40 0 110 0 Q 180 0 180 40" fill="none" stroke="#0F172A" stroke-width="10" stroke-linecap="round"/>
+    <!-- Bag body -->
+    <path d="M 0 40 L 220 40 L 235 240 Q 235 260 215 260 L 5 260 Q -15 260 -15 240 Z" fill="#0F172A"/>
+    <!-- Amber stripe -->
+    <rect x="-15" y="60" width="250" height="14" fill="#F59E0B"/>
+  </g>
+
+  <!-- Tiny puppy face peeking out -->
+  <g transform="translate(360, 220)">
+    <!-- Head -->
+    <ellipse cx="40" cy="40" rx="36" ry="32" fill="#FFFFFF" stroke="#0F172A" stroke-width="3"/>
+    <!-- Ears -->
+    <path d="M 8 25 Q 0 5 18 12 Q 22 22 22 32 Z" fill="#0F172A"/>
+    <path d="M 72 25 Q 80 5 62 12 Q 58 22 58 32 Z" fill="#0F172A"/>
+    <!-- Eyes -->
+    <circle cx="28" cy="40" r="4" fill="#0F172A"/>
+    <circle cx="52" cy="40" r="4" fill="#0F172A"/>
+    <!-- Nose -->
+    <ellipse cx="40" cy="55" rx="4" ry="3" fill="#0F172A"/>
+    <!-- Smile -->
+    <path d="M 32 60 Q 40 66 48 60" stroke="#0F172A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Bone outside bag (accessory) -->
+  <g transform="translate(180, 410) rotate(-18)">
+    <rect x="0" y="-9" width="80" height="18" rx="9" fill="#FCD34D"/>
+    <circle cx="0" cy="-9" r="11" fill="#FCD34D"/>
+    <circle cx="0" cy="9" r="11" fill="#FCD34D"/>
+    <circle cx="80" cy="-9" r="11" fill="#FCD34D"/>
+    <circle cx="80" cy="9" r="11" fill="#FCD34D"/>
+  </g>
+
+  <!-- Ball -->
+  <circle cx="600" cy="400" r="32" fill="#F59E0B"/>
+  <path d="M 600 368 Q 580 384 580 400 Q 580 416 600 432" fill="none" stroke="#D97706" stroke-width="2.5" opacity="0.6"/>
+  <path d="M 600 368 Q 620 384 620 400 Q 620 416 600 432" fill="none" stroke="#D97706" stroke-width="2.5" opacity="0.6"/>
+
+  <!-- Tag -->
+  <g transform="translate(540, 215) rotate(15)">
+    <path d="M 0 0 L 40 0 L 60 20 L 60 50 L 0 50 Z" fill="#FFFFFF" stroke="#0F172A" stroke-width="3"/>
+    <circle cx="48" cy="14" r="4" fill="none" stroke="#0F172A" stroke-width="2"/>
+    <line x1="10" y1="28" x2="40" y2="28" stroke="#94A3B8" stroke-width="2.5"/>
+    <line x1="10" y1="38" x2="32" y2="38" stroke="#94A3B8" stroke-width="2.5"/>
+  </g>
+</svg>

@@ -537,8 +537,7 @@ export const PRODUCTS: Product[] = [
     price: 38900,
     description:
       "Todo lo que necesitás para arrancar bien: collar, correa de entrenamiento, mordedor, snacks de premio y guía PDF.",
-    image:
-      "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=800&auto=format&fit=crop",
+    image: "/productos/kit-cachorro.svg",
     highlight: "Más vendido",
   },
   {
@@ -548,8 +547,7 @@ export const PRODUCTS: Product[] = [
     price: 14900,
     description:
       "Diseñada para sesiones de llamada y trabajo en exteriores. Liviana, resistente, fácil de manejar.",
-    image:
-      "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=800&auto=format&fit=crop",
+    image: "/productos/correa-larga.svg",
   },
   {
     id: "arnes-antitiron",
@@ -558,8 +556,7 @@ export const PRODUCTS: Product[] = [
     price: 17900,
     description:
       "El que recomendamos para perros que tiran. Sin presión en el cuello. Fácil de poner.",
-    image:
-      "https://images.unsplash.com/photo-1605568427561-40dd23c2acea?w=800&auto=format&fit=crop",
+    image: "/productos/arnes-antitiron.svg",
     highlight: "Recomendado",
   },
   {
@@ -569,8 +566,7 @@ export const PRODUCTS: Product[] = [
     price: 8500,
     description:
       "Hechos en Argentina, sin conservantes. Ideales para sesiones largas y reforzar comportamientos.",
-    image:
-      "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?w=800&auto=format&fit=crop",
+    image: "/productos/snacks-naturales.svg",
   },
   {
     id: "kong-rellenable",
@@ -579,8 +575,7 @@ export const PRODUCTS: Product[] = [
     price: 11500,
     description:
       "Para perros que destruyen cosas y los que sufren ansiedad por separación. Mantiene la mente ocupada.",
-    image:
-      "https://images.unsplash.com/photo-1591946614720-90a587da4a36?w=800&auto=format&fit=crop",
+    image: "/productos/kong-rellenable.svg",
   },
   {
     id: "kit-conducta",
@@ -589,7 +584,6 @@ export const PRODUCTS: Product[] = [
     price: 52900,
     description:
       "Línea larga, arnés, snacks de alto valor, clicker y manual de pautas. Para acompañar el plan profesional.",
-    image:
-      "https://images.unsplash.com/photo-1546975490-e8b92a360b24?w=800&auto=format&fit=crop",
+    image: "/productos/kit-conducta.svg",
   },
 ];

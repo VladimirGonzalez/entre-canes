@@ -1,0 +1,39 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Correa larga 5 metros de entrenamiento">
+  <!-- Soft amber backdrop circle -->
+  <circle cx="400" cy="300" r="220" fill="#F59E0B" opacity="0.10"/>
+
+  <!-- Coiled rope (4 concentric circles) -->
+  <g transform="translate(400, 310)" fill="none" stroke-linecap="round">
+    <circle r="160" stroke="#0F172A" stroke-width="22"/>
+    <circle r="120" stroke="#1E293B" stroke-width="22"/>
+    <circle r="80" stroke="#0F172A" stroke-width="22"/>
+    <circle r="40" stroke="#1E293B" stroke-width="22"/>
+  </g>
+
+  <!-- Rope texture lines (subtle) -->
+  <g fill="none" stroke="#475569" stroke-width="2" opacity="0.5">
+    <circle cx="400" cy="310" r="160"/>
+    <circle cx="400" cy="310" r="120"/>
+    <circle cx="400" cy="310" r="80"/>
+    <circle cx="400" cy="310" r="40"/>
+  </g>
+
+  <!-- Metallic snap clip on top -->
+  <g transform="translate(380, 100)">
+    <!-- Body of clip -->
+    <rect x="0" y="0" width="40" height="80" rx="8" fill="#94A3B8" stroke="#475569" stroke-width="3"/>
+    <rect x="6" y="6" width="28" height="68" rx="4" fill="#CBD5E1"/>
+    <!-- Loop hole -->
+    <circle cx="20" cy="20" r="6" fill="none" stroke="#475569" stroke-width="3"/>
+    <!-- Lever -->
+    <rect x="2" y="40" width="20" height="6" rx="2" fill="#475569"/>
+    <!-- Hook -->
+    <path d="M 20 80 Q 20 110 40 110" fill="none" stroke="#475569" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- Length tag -->
+  <g transform="translate(580, 470)">
+    <rect x="-50" y="-22" width="100" height="44" rx="22" fill="#F59E0B"/>
+    <text x="0" y="6" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#0F172A" text-anchor="middle">5 m</text>
+  </g>
+</svg>
