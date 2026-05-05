@@ -344,8 +344,8 @@ export const PAIN_POINTS: { icon: string; title: string; copy: string }[] = [
 export const HOW_IT_WORKS = [
   {
     step: "01",
-    title: "Evaluación gratuita",
-    copy: "Charlamos por WhatsApp y coordinamos una evaluación inicial sin costo. Entendemos a tu perro, tu casa y tu rutina antes de proponer nada.",
+    title: "Te conocemos",
+    copy: "Charlamos por WhatsApp y entendemos a tu perro, tu casa y tu rutina antes de proponer nada. Sin presión, sin guiones automáticos.",
   },
   {
     step: "02",
@@ -370,7 +370,13 @@ export type Testimonial = {
   result: string;
   quote: string;
   rating: number;
-  avatar?: string;
+  /**
+   * URL de la imagen del caso (idealmente una foto real del cliente con
+   * autorización). Reemplazá las URLs de Unsplash por fotos reales subiéndolas
+   * a `public/casos/<perro>.jpg` y poniendo "/casos/luna.jpg" acá.
+   */
+  image: string;
+  imageAlt?: string;
 };
 
 export const TESTIMONIALS: Testimonial[] = [
@@ -383,6 +389,10 @@ export const TESTIMONIALS: Testimonial[] = [
     quote:
       "Llegué llorando a la primera sesión. Luna era hermosa pero impasable, me había sacado el hombro dos veces. En seis semanas lo dimos vuelta. No solo aprendió a caminar al pie: yo aprendí a ser su guía. Recuperé las tardes con ella.",
     rating: 5,
+    // Border Collie blanco y negro
+    image:
+      "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?w=900&q=80&auto=format&fit=crop",
+    imageAlt: "Border Collie blanco y negro caminando relajado con su dueña",
   },
   {
     name: "Diego",
@@ -393,6 +403,10 @@ export const TESTIMONIALS: Testimonial[] = [
     quote:
       "Toby venía de la calle, todo le daba miedo y eso lo volvía agresivo. Otros entrenadores me dijeron que era 'caso perdido'. Con el GIC empezó a confiar de nuevo. Hoy es otro perro. No es magia, es paciencia y método.",
     rating: 5,
+    // Perro mestizo de tamaño mediano
+    image:
+      "https://images.unsplash.com/photo-1583511655826-05700d52f4d9?w=900&q=80&auto=format&fit=crop",
+    imageAlt: "Perro mestizo tranquilo en una sesión de entrenamiento",
   },
   {
     name: "Familia Pérez",
@@ -403,6 +417,10 @@ export const TESTIMONIALS: Testimonial[] = [
     quote:
       "Rocco era un huracán. Rompía todo, mordía sin querer pero fuerte. Mis hijos le tenían miedo. En 8 sesiones todo cambió. Lo más importante: nos enseñaron a NOSOTROS qué hacer. Ahora es parte de la familia, no un problema.",
     rating: 5,
+    // Labrador
+    image:
+      "https://images.unsplash.com/photo-1537204696486-967f1b7198c8?w=900&q=80&auto=format&fit=crop",
+    imageAlt: "Labrador joven con expresión amable y atenta",
   },
   {
     name: "Sofía",
@@ -413,6 +431,10 @@ export const TESTIMONIALS: Testimonial[] = [
     quote:
       "Los vecinos me amenazaron con denunciarme. Olivia lloraba cada vez que salía. Probé de todo: collares, juguetes, dejarla con la TV. Nada. Con el plan de Entre Canes, en seis semanas dejó de llorar. Volví a tener vida propia.",
     rating: 5,
+    // Caniche Toy
+    image:
+      "https://images.unsplash.com/photo-1645097140485-ccf3d61d60d5?w=900&q=80&auto=format&fit=crop",
+    imageAlt: "Caniche Toy pequeño y peludo, tranquilo y feliz",
   },
 ];
 
@@ -479,6 +501,32 @@ export type Product = {
   description: string;
   image: string;
   highlight?: string;
+};
+
+// ============================================================
+// Imágenes Antes / Después (sección "Transformation")
+// ----------------------------------------------------------
+// 🔥 IDEAL: usar fotos reales de un mismo cliente con autorización.
+// Dropealas en `public/transformation/before.jpg` y `after.jpg` y
+// cambiá las URLs de abajo por "/transformation/before.jpg" etc.
+//
+// Para máxima conversión emocional:
+// - Mismo perro o misma raza/color
+// - Misma persona, mismo lugar (idealmente)
+// - Estado emocional opuesto (estrés vs. calma, lejos vs. al pie)
+// ============================================================
+export const TRANSFORMATION_IMAGES = {
+  // Antes: perro estresado / con conducta problemática
+  before:
+    "https://images.unsplash.com/photo-1777941334330-7c78b562653c?w=1400&q=80&auto=format&fit=crop",
+  beforeAlt:
+    "Perro mostrando conducta de descontrol, tenso y reactivo",
+
+  // Después: perro feliz jugando con su dueño/a
+  after:
+    "https://images.unsplash.com/photo-1715483199288-4d72cae66fb8?w=1400&q=80&auto=format&fit=crop",
+  afterAlt:
+    "Perro feliz jugando con su dueña, vínculo fuerte y conducta equilibrada",
 };
 
 export const PRODUCTS: Product[] = [

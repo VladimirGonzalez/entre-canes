@@ -15,13 +15,6 @@ export const metadata: Metadata = {
     "Historias reales de familias y perros que pasaron por Entre Canes. Sin marketing inflado: lo que efectivamente cambia con un buen método.",
 };
 
-const CASE_IMAGES = [
-  "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=900&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?w=900&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=900&q=80&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=900&q=80&auto=format&fit=crop",
-];
-
 export default function ResultadosPage() {
   return (
     <>
@@ -66,8 +59,8 @@ export default function ResultadosPage() {
                       }`}
                     >
                       <Image
-                        src={CASE_IMAGES[idx % CASE_IMAGES.length]}
-                        alt={`Caso de éxito: ${t.dog}`}
+                        src={t.image}
+                        alt={t.imageAlt || `Caso de éxito: ${t.dog}`}
                         fill
                         sizes="(min-width: 1024px) 40vw, 100vw"
                         className="object-cover"

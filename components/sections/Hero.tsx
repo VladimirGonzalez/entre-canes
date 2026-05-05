@@ -47,13 +47,12 @@ export function Hero() {
               transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
               className="mt-5 text-display-2xl text-brand-ink"
             >
-              Tu perro puede ser
-              <br className="hidden sm:block" />
+              Educamos perros, fortalecemos{" "}
               <span className="relative inline-block">
-                <span className="relative z-10">el mejor compañero</span>
+                <span className="relative z-10">vínculos</span>
                 <span className="absolute inset-x-0 bottom-1 -z-0 h-3 bg-brand-amber/40 sm:bottom-2 sm:h-4" />
-              </span>
-              {" "}que imaginás.
+              </span>{" "}
+              y transformamos la convivencia.
             </motion.h1>
 
             <motion.p
@@ -62,9 +61,10 @@ export function Hero() {
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="mt-5 max-w-xl text-base leading-relaxed text-brand-slate sm:text-lg"
             >
-              Adiestramiento profesional, modificación de conducta y socialización canina.
-              Te mostramos exactamente cómo lograr el cambio. Resultados reales en
-              semanas, no en años.
+              Desde obediencia básica hasta problemas de conducta como
+              agresividad, miedo y ansiedad, te ayudamos a entender mejor a tu
+              perro y construir una relación basada en confianza, comunicación
+              y educación en positivo.
             </motion.p>
 
             <motion.div

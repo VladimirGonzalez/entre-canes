@@ -7,6 +7,7 @@ import { ArrowRight, X, Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionLabel";
 import { Reveal } from "@/components/ui/Reveal";
+import { TRANSFORMATION_IMAGES } from "@/lib/constants";
 
 const BEFORE = [
   "Tira de la correa cada paseo",
@@ -44,8 +45,8 @@ export function Transformation() {
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-brand-line bg-brand-paper shadow-card">
               {/* AFTER image (background) */}
               <Image
-                src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=1400&q=80&auto=format&fit=crop"
-                alt="Perro entrenado caminando con su dueño tranquilo"
+                src={TRANSFORMATION_IMAGES.after}
+                alt={TRANSFORMATION_IMAGES.afterAlt}
                 fill
                 sizes="(min-width: 1024px) 60vw, 100vw"
                 className="object-cover"
@@ -59,8 +60,8 @@ export function Transformation() {
                 }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?w=1400&q=80&auto=format&fit=crop"
-                  alt="Perro tirando de la correa, desordenado"
+                  src={TRANSFORMATION_IMAGES.before}
+                  alt={TRANSFORMATION_IMAGES.beforeAlt}
                   fill
                   sizes="(min-width: 1024px) 60vw, 100vw"
                   className="object-cover"
