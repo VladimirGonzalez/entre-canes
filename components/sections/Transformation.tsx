@@ -17,7 +17,7 @@ const BEFORE = [
   "Te sentís culpable o frustrado",
 ];
 const AFTER = [
-  "Camina al pie, con calma",
+  "Paseos más tranquilos",
   "Reacciona menos, escucha más",
   "Acude cuando lo llamás",
   "Recibe visitas tranquilo",
@@ -35,7 +35,7 @@ export function Transformation() {
             align="center"
             eyebrow="Antes y después"
             title="Esto es lo que cambia."
-            subtitle="No vendemos magia ni promesas inflables. Mostramos lo que ocurre cuando aplicás un método claro durante el tiempo que hace falta."
+            subtitle="No vendemos magia ni soluciones vacías. Mostramos lo que puede pasar cuando entendés a tu perro, trabajás con constancia y construís un cambio real que se sostiene en el tiempo."
           />
         </Reveal>
 

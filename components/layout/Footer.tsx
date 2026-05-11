@@ -35,10 +35,49 @@ export function Footer() {
             </Link>
 
             <p className="mt-4 max-w-md text-sm leading-relaxed text-brand-slate">
-              Adiestramiento canino con método. Ayudamos a familias a recuperar
-              la convivencia con su perro a través de un proceso claro,
-              respetuoso y sostenible.
+              Adiestramiento canino basado en técnicas de modificación de
+              conducta y obediencia en positivo. Trabajamos ayudando a las
+              familias a recuperar la convivencia con su perro de una manera
+              clara, respetuosa y sostenible.
             </p>
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-brand-slate">
+              Nuestra postura se basa en la evidencia científica actual, que
+              demuestra de forma consistente que los métodos aversivos pueden
+              generar estrés, miedo y afectar el vínculo entre las personas y
+              sus perros, mientras que los métodos basados en recompensas y
+              aprendizaje cooperativo son más seguros, eficaces y generan
+              cambios más estables en el tiempo.
+            </p>
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-brand-slate">
+              Estas técnicas son estudiadas y recomendadas por organizaciones
+              dedicadas al comportamiento animal como la{" "}
+              <span className="font-medium text-brand-ink">
+                American Veterinary Society of Animal Behavior (AVSAB)
+              </span>
+              , fundada en 1976 en Estados Unidos, que publica investigaciones
+              y guías sobre educación canina y bienestar animal.
+            </p>
+            <div className="mt-3 flex flex-col gap-1 text-xs text-brand-slate">
+              <span className="font-semibold text-brand-ink">
+                Publicaciones oficiales:
+              </span>
+              <a
+                href="https://avsab.org/resources/position-statements/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="break-all underline decoration-brand-line underline-offset-2 transition-colors hover:text-brand-ink hover:decoration-brand-ink"
+              >
+                avsab.org/resources/position-statements
+              </a>
+              <a
+                href="https://avsab.org/wp-content/uploads/2021/08/AVSAB-Humane-Dog-Training-Position-Statement-2021.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="break-all underline decoration-brand-line underline-offset-2 transition-colors hover:text-brand-ink hover:decoration-brand-ink"
+              >
+                AVSAB Humane Dog Training Position Statement (PDF)
+              </a>
+            </div>
 
             <div className="mt-6 flex flex-wrap gap-2">
               <a

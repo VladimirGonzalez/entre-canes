@@ -152,7 +152,7 @@ export const SERVICES: Service[] = [
       "Resguardo de recursos (comida, juguetes, espacio)",
       "Mordidas, destrozos y conductas autolíticas",
     ],
-    duration: "Plan personalizado de 6 a 12 semanas",
+    duration: "",
     ideal: "Casos complejos · Perros adultos",
     whatsappMessage:
       "Hola! Tengo un problema de conducta con mi perro y quiero saber si pueden ayudarme.",
@@ -169,7 +169,7 @@ export const SERVICES: Service[] = [
       "GIC Miedo — perros inseguros y fobias",
       "GIC Reactividad — perros que ladran o reaccionan",
     ],
-    duration: "Encuentros semanales",
+    duration: "",
     ideal: "Cachorros y adultos según el grupo",
     whatsappMessage:
       "Hola! Quiero info sobre los Grupos GIC. ¿Cuándo arranca el próximo?",
@@ -309,7 +309,7 @@ export const PAIN_POINTS: { icon: string; title: string; copy: string }[] = [
   {
     icon: "TugOfWar",
     title: "Tira de la correa y te arrastra",
-    copy: "Salir a pasear se convirtió en un tirón constante. Volvés a casa con el brazo dolorido y sin ganas de salir mañana.",
+    copy: "Los paseos dejaron de disfrutarse. Terminás cansado, frustrado y sintiendo que salir con él es más una pelea que un momento juntos.",
   },
   {
     icon: "Phone",
@@ -319,12 +319,12 @@ export const PAIN_POINTS: { icon: string; title: string; copy: string }[] = [
   {
     icon: "Bell",
     title: "Ladra a todo: timbre, otros perros, gente",
-    copy: "Cada timbre es un caos. Cada paseo, una pelea anunciada. Estás siempre tenso y los vecinos ya se quejaron.",
+    copy: "Vivís en alerta constante. Cada timbre, perro o ruido parece desatar un caos y sentís tensión todo el tiempo. Te preocupan las quejas, las miradas y ya no podés relajarte ni disfrutar tranquilo con él.",
   },
   {
     icon: "Shield",
     title: "Es agresivo o reactivo con otros perros",
-    copy: "Cambiaste de rutas, evitás horarios de plaza, pedís disculpas en cada cruce. Estás caminando en puntas de pie.",
+    copy: "Cada paseo se siente como una situación que puede explotar en cualquier momento. Terminás evitando lugares, personas y perros por miedo a que algo pase… o directamente ya dejaste de pasearlo por todo el estrés que genera.",
   },
   {
     icon: "Heart",
@@ -345,17 +345,17 @@ export const HOW_IT_WORKS = [
   {
     step: "01",
     title: "Te conocemos",
-    copy: "Charlamos por WhatsApp y entendemos a tu perro, tu casa y tu rutina antes de proponer nada. Sin presión, sin guiones automáticos.",
+    copy: "Nos escribís, analizamos tu caso juntos y coordinamos la primera clase de diagnóstico en tu domicilio.",
   },
   {
     step: "02",
     title: "Plan personalizado",
-    copy: "Te armamos un plan claro: qué se trabaja, en cuántas sesiones, qué resultados esperar y cuánto cuesta. Sin promesas mágicas.",
+    copy: "Sabemos lo desgastante que puede ser sentir que ya probaste de todo y nada cambia. Por eso armamos un plan con técnicas de modificación de conducta adaptadas a tu perro, entendiendo lo que viven día a día y acompañándolos paso a paso en un cambio real.",
   },
   {
     step: "03",
     title: "Resultados sostenibles",
-    copy: "Trabajamos en sesiones presenciales o en Grupos GIC, y te damos pautas para tu vida real. El cambio se queda mucho después de la última clase.",
+    copy: "Trabajamos con sesiones pensadas para tu vida real, dándote herramientas claras para el día a día. El objetivo no es que el cambio dure un tiempo, sino que se mantenga para siempre.",
   },
 ];
 
@@ -454,7 +454,7 @@ export const METRICS = [
 export const FAQ: { q: string; a: string }[] = [
   {
     q: "¿En cuántas sesiones voy a ver resultados?",
-    a: "Depende del caso, pero la mayoría de las familias notan cambios concretos a partir de la 2da o 3ra sesión. Programas básicos: 8 a 10 sesiones. Modificación de conducta: 6 a 12 semanas. Te damos el plan claro desde el día uno, sin sorpresas.",
+    a: "Depende del caso, pero la mayoría de las familias notan cambios desde la 1ra a 2da sesión. En programas básicos: 8 a 10 sesiones. En modificación de conducta hay que analizar la gravedad del caso para dar un estimativo personalizado.",
   },
   {
     q: "¿Trabajan con perros agresivos o reactivos?",
@@ -478,11 +478,11 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "¿Qué método usan? ¿Es entrenamiento positivo?",
-    a: "Trabajamos con refuerzo positivo y aprendizaje cooperativo. No usamos collares de castigo, gritos ni dominación. La ciencia es clara: los perros aprenden mejor sin miedo. Eso no significa permisivo: hay límites, estructura y consecuencias razonables.",
+    a: "Trabajamos con refuerzo positivo y aprendizaje cooperativo. No usamos collares de castigo, gritos ni dominación. La ciencia es clara: los perros aprenden mejor sin miedo. Eso no significa permisivo: hay límites y estructura.",
   },
   {
     q: "¿Cuánto cuesta?",
-    a: "Depende del programa y la cantidad de sesiones. Para que tengas una idea: una sesión individual ronda lo que sale una cena para dos en un buen restaurante. Pero la primera evaluación es 100% gratis y sin compromiso. Te pasamos el presupuesto exacto después de conocer a tu perro.",
+    a: "Trabajamos con un valor unificado para los procesos de modificación de conducta, buscando que el acompañamiento sea accesible y amigable para quienes nos eligen. La idea es que más personas puedan acceder a ayuda profesional sin sentirse limitadas por el tipo de problema que tiene su perro. Antes de comenzar, realizamos una evaluación inicial para entender el caso y explicarles el proceso recomendado con total claridad.",
   },
   {
     q: "¿Y si no veo cambios?",
@@ -522,11 +522,10 @@ export const TRANSFORMATION_IMAGES = {
   beforeAlt:
     "Perro mostrando conducta de descontrol, tenso y reactivo",
 
-  // Después: perro feliz jugando con su dueño/a
-  after:
-    "https://images.unsplash.com/photo-1715483199288-4d72cae66fb8?w=1400&q=80&auto=format&fit=crop",
+  // Después: Border Collie socializando con otro perro
+  after: "/transformation/after.jpg",
   afterAlt:
-    "Perro feliz jugando con su dueña, vínculo fuerte y conducta equilibrada",
+    "Border Collie blanco y negro socializando tranquilo con otro perro",
 };
 
 export const PRODUCTS: Product[] = [

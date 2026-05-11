@@ -4,7 +4,6 @@ import {
   ArrowRight,
   Calendar,
   Check,
-  Clock,
   Eye,
   MessageCircle,
   PawPrint,
@@ -149,9 +148,6 @@ export default function GICPage() {
               </div>
 
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-white/70">
-                <span className="inline-flex items-center gap-2">
-                  <Clock className="h-3.5 w-3.5 text-brand-amber" /> Encuentros semanales
-                </span>
                 <span className="inline-flex items-center gap-2">
                   <Users className="h-3.5 w-3.5 text-brand-amber" /> Grupos reducidos
                 </span>

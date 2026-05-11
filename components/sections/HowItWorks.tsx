@@ -19,7 +19,7 @@ export function HowItWorks() {
             align="center"
             eyebrow="Cómo funciona"
             title="Tres pasos. Sin vueltas."
-            subtitle="Ningún proceso eterno ni cursos online infinitos. Esto es lo que hacemos desde el primer mensaje hasta el último día contigo."
+            subtitle="Ningún proceso eterno ni cursos online infinitos. Esto es lo que hacemos desde el primer mensaje hasta el último día."
           />
         </Reveal>
 

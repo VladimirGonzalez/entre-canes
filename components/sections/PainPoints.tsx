@@ -39,7 +39,7 @@ export function PainPoints() {
                 <span className="text-brand-slate">No estás solo.</span>
               </>
             }
-            subtitle="Cada semana llegan a Entre Canes familias frustradas, agotadas y a punto de tirar la toalla. La buena noticia: todo lo que ves abajo tiene solución cuando hay método y compromiso."
+            subtitle="Cada semana llegan a Entre Canes familias frustradas, agotadas y a punto de tirar la toalla. La buena noticia: todo lo que ves abajo tiene solución cuando hay un plan de trabajo claro acompañado de constancia y compromiso."
           />
         </Reveal>
 

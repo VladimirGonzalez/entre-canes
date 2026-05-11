@@ -56,10 +56,12 @@ export function ServicesGrid({
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <span className="font-mono text-xs uppercase tracking-wider text-brand-amberDark">
-                      {s.duration}
-                    </span>
-                    <h3 className="mt-2 text-xl font-semibold text-brand-ink sm:text-2xl">
+                    {s.duration && (
+                      <span className="font-mono text-xs uppercase tracking-wider text-brand-amberDark">
+                        {s.duration}
+                      </span>
+                    )}
+                    <h3 className={`${s.duration ? "mt-2" : ""} text-xl font-semibold text-brand-ink sm:text-2xl`}>
                       {s.title}
                     </h3>
                     <p className="mt-2 text-sm font-medium text-brand-slate">
