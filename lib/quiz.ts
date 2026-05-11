@@ -199,7 +199,6 @@ export function getRecommendation(answers: QuizAnswers): Recommendation {
   if (age === "puppy" || problem === "cachorro") {
     return {
       serviceSlug: "educacion-cachorros",
-      gicGroup: "cachorros",
       diagnosis:
         "Estás en el momento más importante. Las primeras 16 semanas de un cachorro definen el 80% de su conducta adulta. Bien guiado, prevenís la mayoría de los problemas que llegan a vernos en perros grandes.",
       headline: "Educación temprana para cachorros",
@@ -276,14 +275,13 @@ export function getRecommendation(answers: QuizAnswers): Recommendation {
       };
     }
     return {
-      serviceSlug: "gic",
-      gicGroup: "reactividad",
+      serviceSlug: "modificacion-conducta",
       diagnosis:
-        "Los ladridos hacia estímulos externos son señales de reactividad. En GIC Reactividad trabajamos por debajo del umbral del perro, enseñando respuestas alternativas sin castigo ni dominación.",
-      headline: "GIC Reactividad",
+        "Los ladridos hacia estímulos externos (timbre, otros perros, ruidos) son señales de reactividad. Trabajamos por debajo del umbral del perro, enseñando respuestas alternativas sin castigo ni dominación, con un abordaje de modificación de conducta paso a paso.",
+      headline: "Modificación de conducta",
       urgency: "media",
       whatsappMessage: buildWhatsAppMessage({
-        diagnosis: `${dogLabel}${breedLabel} ladra a otros perros / gente / ruidos y quiero info de GIC Reactividad`,
+        diagnosis: `${dogLabel}${breedLabel} ladra a otros perros, gente o ruidos y necesito ayuda con modificación de conducta`,
         dogLabel,
         breedLabel,
         problem,
@@ -410,6 +408,10 @@ function buildWhatsAppMessage(args: {
     severity ? `• Gravedad: ${severityLabels[severity] ?? severity}` : null,
     "",
     "¿Cuándo podemos hablar?",
+  ].filter(Boolean);
+
+  return lines.join("\n");
+}
   ].filter(Boolean);
 
   return lines.join("\n");
