@@ -1,5 +1,5 @@
 // ============================================================
-// Eventos de conversión para Google Analytics 4 + Meta Pixel
+// Eventos de conversion para Google Analytics 4 + Meta Pixel
 // Uso: import { trackEvent } from "@/lib/analytics"
 //      trackEvent("cta_whatsapp_click", { source: "hero" })
 // ============================================================
@@ -28,13 +28,20 @@ export type EventName =
   | "form_submit"
   | "gic_view"
   | "faq_open"
-  | "tienda_producto_click";
+  | "tienda_producto_click"
+  | "quiz_cta_click"
+  | "quiz_open"
+  | "quiz_step"
+  | "quiz_completed"
+  | "quiz_whatsapp_click";
 
 const META_EVENT_MAP: Partial<Record<EventName, string>> = {
   cta_whatsapp_click: "Contact",
   cta_reservar_click: "Lead",
   form_submit: "Lead",
   tienda_producto_click: "ViewContent",
+  quiz_completed: "Lead",
+  quiz_whatsapp_click: "Contact",
 };
 
 export function trackEvent(name: EventName, params?: Record<string, unknown>) {

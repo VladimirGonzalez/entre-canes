@@ -1,14 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, MessageCircle, Star, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Star, ShieldCheck, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { DiagnosticQuiz } from "@/components/sections/DiagnosticQuiz";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES, METRICS } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 
 export function Hero() {
+  const [quizOpen, setQuizOpen] = useState(false);
+
   return (
     <section className="relative overflow-hidden pt-10 sm:pt-14 lg:pt-20">
       {/* Decorative background */}
@@ -85,18 +89,20 @@ export function Hero() {
                 Reservar evaluación gratis
                 <ArrowRight className="h-4 w-4" />
               </Button>
-              <Button
-                href={buildWhatsAppLink(WHATSAPP_MESSAGES.default)}
-                external
-                variant="ghost"
-                size="lg"
-                onClick={() =>
-                  trackEvent("cta_whatsapp_click", { source: "hero" })
-                }
+              <button
+                type="button"
+                onClick={() => {
+                  trackEvent("quiz_cta_click", { source: "hero" });
+                  setQuizOpen(true);
+                }}
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-line bg-white px-6 py-4 text-base font-medium text-brand-ink transition-all duration-300 hover:border-brand-ink hover:bg-brand-paper focus:outline-none focus:ring-2 focus:ring-brand-ink/20 focus:ring-offset-2"
               >
-                <MessageCircle className="h-4 w-4 text-[#25D366]" />
-                Hablar por WhatsApp
-              </Button>
+                <Sparkles className="h-4 w-4 text-brand-amberDark" />
+                Hacer diagnóstico gratis
+                <span className="hidden text-xs text-brand-mist sm:inline">
+                  · 60 seg
+                </span>
+              </button>
             </motion.div>
 
             {/* Trust strip */}
@@ -184,13 +190,15 @@ export function Hero() {
                 ))}
               </div>
               <p className="mt-2 text-sm leading-snug text-brand-ink">
-                &ldquo;En 6 semanas Luna dejó de tirar de la correa. Recuperé las tardes con ella.&rdquo;
+                &ldquo;En 6 semanas Luna dejo de tirar de la correa. Recupere las tardes con ella.&rdquo;
               </p>
-              <p className="mt-2 text-xs text-brand-slate">— María, dueña de Luna 🐶</p>
+              <p className="mt-2 text-xs text-brand-slate">— Maria, dueña de Luna</p>
             </motion.div>
           </motion.div>
         </div>
       </Container>
+
+      <DiagnosticQuiz open={quizOpen} onClose={() => setQuizOpen(false)} />
     </section>
   );
 }

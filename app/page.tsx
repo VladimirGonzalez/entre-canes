@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { BrandStrip } from "@/components/sections/BrandStrip";
 import { PainPoints } from "@/components/sections/PainPoints";
+import { QuizBanner } from "@/components/sections/QuizBanner";
 import { Transformation } from "@/components/sections/Transformation";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
@@ -11,9 +12,9 @@ import { FAQSection } from "@/components/sections/FAQSection";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export const metadata: Metadata = {
-  title: "Adiestramiento canino con método. Resultados reales.",
+  title: "Adiestramiento canino con metodo. Resultados reales.",
   description:
-    "Escuela canina, adiestramiento y modificación de conducta. Recuperá la convivencia con tu perro en pocas semanas. Reservá tu evaluación gratuita.",
+    "Escuela canina, adiestramiento y modificacion de conducta. Recupera la convivencia con tu perro en pocas semanas. Reserva tu evaluacion gratuita.",
 };
 
 export default function HomePage() {
@@ -23,6 +24,7 @@ export default function HomePage() {
       <SocialProof />
       <BrandStrip />
       <PainPoints />
+      <QuizBanner />
       <Transformation />
       <HowItWorks />
       <ServicesGrid />
