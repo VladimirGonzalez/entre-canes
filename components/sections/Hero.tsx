@@ -75,108 +75,68 @@ export function Hero() {
               y educación en positivo.
             </motion.p>
 
-            {/* CTA con animaciones ultra-convertidoras */}
+            {/* CTA PRINCIPAL con animaciones de conversion */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
               className="mt-7 flex flex-col items-start gap-3 sm:flex-row sm:items-center"
             >
-              <div className="relative inline-flex">
-                {/* Halo glow pulse (detrás del botón) */}
+              <motion.button
+                type="button"
+                onClick={openQuiz}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                animate={{
+                  boxShadow: [
+                    "0 0 0 0 rgba(245, 158, 11, 0)",
+                    "0 0 0 14px rgba(245, 158, 11, 0)",
+                  ],
+                }}
+                transition={{
+                  boxShadow: {
+                    duration: 2.2,
+                    repeat: Infinity,
+                    repeatDelay: 0.8,
+                    ease: "easeOut",
+                  },
+                }}
+                className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-brand-amber px-7 py-4 text-base font-semibold text-brand-ink shadow-card transition-colors duration-300 hover:bg-brand-amberDark hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-amber/60 focus:ring-offset-2"
+              >
+                {/* Shimmer pass que cruza el botón cada 4 segundos */}
                 <motion.span
                   aria-hidden
-                  className="absolute inset-0 -z-10 rounded-full bg-brand-amber blur-xl"
-                  animate={{
-                    opacity: [0.35, 0.65, 0.35],
-                    scale: [1, 1.08, 1],
-                  }}
+                  className="pointer-events-none absolute inset-y-0 -left-1/3 z-0 w-1/3 bg-gradient-to-r from-transparent via-white/55 to-transparent"
+                  initial={{ x: "-100%" }}
+                  animate={{ x: "400%" }}
                   transition={{
-                    duration: 2.6,
+                    duration: 1.3,
                     repeat: Infinity,
+                    repeatDelay: 2.7,
                     ease: "easeInOut",
                   }}
                 />
 
-                {/* Ring expansivo cada cierto tiempo (efecto "ping" suave) */}
-                <motion.span
-                  aria-hidden
-                  className="absolute inset-0 -z-10 rounded-full border-2 border-brand-amber"
-                  animate={{
-                    opacity: [0.6, 0, 0.6],
-                    scale: [1, 1.18, 1],
-                  }}
-                  transition={{
-                    duration: 2.6,
-                    repeat: Infinity,
-                    ease: "easeOut",
-                    times: [0, 0.6, 1],
-                  }}
-                />
+                {/* Contenido por encima del shimmer */}
+                <span className="relative z-10 flex items-center gap-2">
+                  <Sparkles className="h-4 w-4" />
+                  Empezar diagnóstico gratis
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              </motion.button>
 
-                {/* Botón principal */}
-                <motion.button
-                  type="button"
-                  onClick={openQuiz}
-                  whileHover={{ scale: 1.04, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-full bg-brand-amber px-7 py-4 text-base font-semibold text-brand-ink shadow-card transition-shadow hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-brand-amber/60 focus:ring-offset-2"
-                >
-                  {/* Shimmer effect: brillo diagonal que cruza el botón */}
-                  <motion.span
-                    aria-hidden
-                    className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/70 to-transparent"
-                    animate={{ x: ["0%", "400%"] }}
-                    transition={{
-                      duration: 1.6,
-                      repeat: Infinity,
-                      repeatDelay: 2.4,
-                      ease: "easeInOut",
-                    }}
-                  />
-
-                  {/* Sparkles que titilan */}
-                  <motion.span
-                    className="relative z-10 inline-flex"
-                    animate={{
-                      scale: [1, 1.25, 1],
-                      rotate: [0, -8, 8, 0],
-                    }}
-                    transition={{
-                      duration: 1.8,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      times: [0, 0.4, 0.7, 1],
-                    }}
-                  >
-                    <Sparkles className="h-4 w-4" strokeWidth={2.5} />
-                  </motion.span>
-
-                  <span className="relative z-10">
-                    Empezar diagnóstico gratis
-                  </span>
-
-                  {/* Flecha con auto-nudge + hover */}
-                  <motion.span
-                    className="relative z-10 inline-flex"
-                    animate={{ x: [0, 4, 0, 4, 0] }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      repeatDelay: 2.5,
-                      ease: "easeInOut",
-                      times: [0, 0.15, 0.3, 0.45, 1],
-                    }}
-                  >
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </motion.span>
-                </motion.button>
-              </div>
-
-              <span className="text-xs text-brand-mist">
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8, duration: 0.4 }}
+                className="flex items-center gap-2 text-xs text-brand-slate"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                </span>
                 Tarda ~60 segundos · Sin compromiso
-              </span>
+              </motion.span>
             </motion.div>
 
             {/* Trust strip */}
@@ -241,7 +201,6 @@ export function Hero() {
                 sizes="(min-width: 1024px) 40vw, 90vw"
                 className="object-cover"
               />
-              {/* Bottom-left chip: live status */}
               <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full border border-white/20 bg-brand-ink/85 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-amber opacity-75" />
@@ -251,7 +210,6 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Floating testimonial card */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
