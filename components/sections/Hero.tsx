@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, Star, ShieldCheck, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { DiagnosticQuiz } from "@/components/sections/DiagnosticQuiz";
-import { METRICS } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 
 export function Hero() {
@@ -164,25 +163,6 @@ export function Hero() {
               </div>
             </motion.div>
 
-            {/* Mini-metrics row */}
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.55 }}
-              className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6"
-            >
-              {METRICS.map((m) => (
-                <div
-                  key={m.label}
-                  className="rounded-2xl border border-brand-line bg-white p-4 shadow-soft"
-                >
-                  <div className="text-xl font-semibold tracking-tight text-brand-ink sm:text-2xl">
-                    {m.value}
-                  </div>
-                  <div className="mt-1 text-xs text-brand-slate">{m.label}</div>
-                </div>
-              ))}
-            </motion.div>
           </div>
 
           {/* Image column */}

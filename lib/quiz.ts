@@ -412,7 +412,3 @@ function buildWhatsAppMessage(args: {
 
   return lines.join("\n");
 }
-  ].filter(Boolean);
-
-  return lines.join("\n");
-}
