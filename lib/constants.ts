@@ -443,7 +443,7 @@ export const TESTIMONIALS: Testimonial[] = [
 // ============================================================
 export const METRICS = [
   { value: "+800", label: "Perros entrenados" },
-  { value: "8 años", label: "De experiencia" },
+  { value: "+8 años", label: "De experiencia" },
   { value: "95%", label: "Casos con mejoría" },
   { value: "4.9/5", label: "Reseñas reales" },
 ];
