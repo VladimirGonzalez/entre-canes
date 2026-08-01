@@ -473,8 +473,8 @@ export const FAQ: { q: string; a: string }[] = [
     a: "Las dos, según lo que necesite tu perro. Adiestramiento básico y modificación de conducta arrancan 1:1 para personalizar. Los Grupos GIC son grupales por diseño. En la evaluación inicial te recomendamos qué formato te conviene.",
   },
   {
-    q: "¿Atienden a domicilio?",
-    a: "Sí, ofrecemos asesoramiento a domicilio dentro de zona CABA y GBA Norte (consultar otras zonas). Es ideal cuando los problemas aparecen en casa o en tu barrio: trabajamos en contexto real.",
+    q: "¿Atienden a domicilio? ¿Qué zonas cubren?",
+    a: "Sí, trabajamos a domicilio en CABA y gran parte del GBA: San Miguel, Muñiz, Bella Vista, Los Polvorines, Grand Bourg, Villa de Mayo, Malvinas Argentinas, Don Torcuato, Hurlingham, El Palomar, Caseros, San Isidro, Martínez, Olivos, Vicente López y San Fernando. Si tu zona no está en la lista, consultanos igual. Es ideal cuando los problemas aparecen en casa o en tu barrio: trabajamos en contexto real.",
   },
   {
     q: "¿Qué método usan? ¿Es entrenamiento positivo?",

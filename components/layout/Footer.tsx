@@ -10,6 +10,7 @@ import {
   WHATSAPP_MESSAGES,
   SERVICES,
 } from "@/lib/constants";
+import { ZONAS } from "@/lib/zonas";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -162,6 +163,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/zonas" className="text-brand-slate transition-colors hover:text-brand-ink">
+                  Zonas de cobertura
+                </Link>
+              </li>
+              <li>
                 <Link href="/contacto" className="text-brand-slate transition-colors hover:text-brand-ink">
                   Contacto
                 </Link>
@@ -209,8 +215,28 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Zonas de cobertura (SEO local + interlinking) */}
+        <div className="mt-12 border-t border-brand-line pt-8">
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-brand-mist">
+            Adiestramiento canino a domicilio en
+          </h4>
+          <p className="mt-3 text-xs leading-relaxed text-brand-slate">
+            {ZONAS.map((z, idx) => (
+              <span key={z.slug}>
+                <Link
+                  href={`/zonas/${z.slug}`}
+                  className="transition-colors hover:text-brand-ink hover:underline"
+                >
+                  {z.name}
+                </Link>
+                {idx < ZONAS.length - 1 && <span aria-hidden> · </span>}
+              </span>
+            ))}
+          </p>
+        </div>
+
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col gap-4 border-t border-brand-line pt-6 text-xs text-brand-mist sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-4 border-t border-brand-line pt-6 text-xs text-brand-mist sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} {SITE.name}. Todos los derechos reservados.</p>
           <p>
             Hecho con foco en perros felices y dueños tranquilos.

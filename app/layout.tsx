@@ -7,7 +7,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { StickyMobileCTA } from "@/components/layout/StickyMobileCTA";
-import { SITE } from "@/lib/constants";
+import { CONTACT, SITE, SOCIAL } from "@/lib/constants";
+import { ZONAS } from "@/lib/zonas";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -36,6 +37,9 @@ export const metadata: Metadata = {
     "socialización cachorros",
     "ansiedad por separación",
     "Buenos Aires",
+    "zona norte GBA",
+    "adiestramiento a domicilio",
+    ...ZONAS.map((z) => `adiestramiento canino ${z.name}`),
   ],
   alternates: { canonical: "/" },
   icons: {
@@ -97,11 +101,35 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
+              "@id": `${SITE.url}/#localbusiness`,
               name: SITE.name,
               description: SITE.description,
               url: SITE.url,
-              areaServed: SITE.city,
+              image: `${SITE.url}/og.png`,
+              logo: `${SITE.url}/logo.png`,
+              telephone: CONTACT.phone,
+              email: CONTACT.email,
               priceRange: "$$",
+              address: {
+                "@type": "PostalAddress",
+                addressRegion: "Buenos Aires",
+                addressCountry: "AR",
+              },
+              areaServed: ZONAS.map((z) => ({
+                "@type": "Place",
+                name:
+                  z.name === z.partido
+                    ? `${z.name}, Buenos Aires`
+                    : `${z.name}, ${z.partido}, Buenos Aires`,
+              })),
+              sameAs: [SOCIAL.instagram, SOCIAL.facebook, SOCIAL.tiktok],
+              knowsAbout: [
+                "Adiestramiento canino",
+                "Modificación de conducta canina",
+                "Socialización de cachorros",
+                "Reactividad y agresividad canina",
+                "Ansiedad por separación",
+              ],
             }),
           }}
         />
