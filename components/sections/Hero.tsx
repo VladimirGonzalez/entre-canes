@@ -7,9 +7,11 @@ import { ArrowRight, Star, ShieldCheck, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { DiagnosticQuiz } from "@/components/sections/DiagnosticQuiz";
 import { trackEvent } from "@/lib/analytics";
+import { useAgendaMonth } from "@/lib/agenda";
 
 export function Hero() {
   const [quizOpen, setQuizOpen] = useState(false);
+  const mes = useAgendaMonth();
 
   const openQuiz = () => {
     trackEvent("quiz_cta_click", { source: "hero" });
@@ -45,7 +47,9 @@ export function Hero() {
               className="inline-flex items-center gap-2 rounded-full border border-brand-amber/30 bg-brand-amber/10 px-3 py-1 text-xs font-medium text-brand-amberDark"
             >
               <Sparkles className="h-3.5 w-3.5" />
-              Cupos limitados — abrimos agenda para Mayo
+              {mes
+                ? `Cupos limitados — abrimos agenda para ${mes}`
+                : "Cupos limitados — agenda abierta"}
             </motion.div>
 
             <motion.h1

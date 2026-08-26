@@ -28,9 +28,11 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props): Metadata {
   const zona = getZona(params.zona);
   if (!zona) return {};
+  const ubicacion =
+    zona.name === zona.partido ? zona.name : `${zona.name}, ${zona.partido}`;
   return {
     title: `Adiestramiento canino en ${zona.name} — A domicilio y con método`,
-    description: `Adiestramiento canino y modificación de conducta a domicilio en ${zona.name} (${zona.partido}). Paseos sin tirones, obediencia y socialización. Evaluación gratuita.`,
+    description: `Adiestramiento canino y modificación de conducta a domicilio en ${ubicacion}. Paseos sin tirones, obediencia y socialización. Evaluación gratuita.`,
     alternates: { canonical: `/zonas/${zona.slug}` },
     openGraph: {
       title: `Adiestramiento canino en ${zona.name} · ${SITE.name}`,
@@ -70,7 +72,10 @@ export default function ZonaPage({ params }: Props) {
             provider: { "@id": `${SITE.url}/#localbusiness` },
             areaServed: {
               "@type": "Place",
-              name: `${zona.name}, ${zona.partido}, Buenos Aires, Argentina`,
+              name:
+                zona.name === zona.partido
+                  ? `${zona.name}, Buenos Aires, Argentina`
+                  : `${zona.name}, ${zona.partido}, Buenos Aires, Argentina`,
             },
             url: `${SITE.url}/zonas/${zona.slug}`,
           }),
@@ -89,7 +94,9 @@ export default function ZonaPage({ params }: Props) {
               <Reveal>
                 <SectionLabel variant="amber">
                   <MapPin className="h-3 w-3" />
-                  {zona.name} · {zona.partido}
+                  {zona.name === zona.partido
+                    ? `${zona.name}, Buenos Aires`
+                    : `${zona.name} · Partido de ${zona.partido}`}
                 </SectionLabel>
                 <h1 className="mt-4 text-display-2xl text-brand-ink">
                   Adiestramiento canino <br className="hidden sm:block" />

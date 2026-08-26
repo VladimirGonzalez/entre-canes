@@ -104,7 +104,7 @@ export function QuizBanner() {
                   </div>
                   <span>
                     <span className="font-semibold text-white">+200 familias</span>{" "}
-                    ya hicieron su diagnóstico este mes
+                    ya hicieron su diagnóstico
                   </span>
                 </div>
               </div>

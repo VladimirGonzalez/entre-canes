@@ -103,6 +103,7 @@ export const NAVIGATION: NavItem[] = [
     ],
   },
   { label: "Resultados", href: "/resultados" },
+  { label: "Zonas", href: "/zonas" },
   { label: "Tienda", href: "/tienda" },
   { label: "Nosotros", href: "/sobre-nosotros" },
   { label: "Contacto", href: "/contacto" },

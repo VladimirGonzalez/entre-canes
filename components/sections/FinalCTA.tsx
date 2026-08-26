@@ -6,8 +6,11 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
+import { useAgendaMonth } from "@/lib/agenda";
 
 export function FinalCTA() {
+  const mes = useAgendaMonth();
+
   return (
     <section className="section">
       <Container size="wide">
@@ -27,7 +30,7 @@ export function FinalCTA() {
               <div className="lg:col-span-7">
                 <span className="inline-flex items-center gap-2 rounded-full border border-brand-amber/30 bg-brand-amber/15 px-3 py-1 text-xs font-semibold text-brand-amber">
                   <Clock className="h-3.5 w-3.5" />
-                  Cupos limitados este mes
+                  {mes ? `Cupos limitados para ${mes}` : "Cupos limitados"}
                 </span>
 
                 <h2 className="mt-5 text-display-xl">
