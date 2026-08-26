@@ -1,6 +1,8 @@
-"use client";
-
-import { useEffect, useState } from "react";
+// ============================================================
+// Mes de agenda — se calcula solo, nunca se escribe a mano.
+// Función pura y sin dependencias de React: la usan tanto el
+// servidor (para que el mes quede en el HTML) como el cliente.
+// ============================================================
 
 const MESES = [
   "Enero",
@@ -25,16 +27,4 @@ export function agendaMonth(now: Date = new Date()): string {
   const d = new Date(now.getFullYear(), now.getMonth(), 1);
   if (now.getDate() > 20) d.setMonth(d.getMonth() + 1);
   return MESES[d.getMonth()];
-}
-
-/**
- * El sitio se genera estático: si el mes se calculara al renderizar, el HTML
- * quedaría congelado en el mes del deploy. Por eso se resuelve recién en el
- * cliente y devuelve null hasta montar, para que el copy caiga en una variante
- * sin fecha en vez de mostrar un mes viejo.
- */
-export function useAgendaMonth(): string | null {
-  const [mes, setMes] = useState<string | null>(null);
-  useEffect(() => setMes(agendaMonth()), []);
-  return mes;
 }

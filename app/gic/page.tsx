@@ -22,6 +22,10 @@ import {
   buildWhatsAppLink,
   WHATSAPP_MESSAGES,
 } from "@/lib/constants";
+import { agendaMonth } from "@/lib/agenda";
+
+// El mes de agenda viaja en el HTML: lo regeneramos cada hora.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Grupos GIC — Grupos de Interacción Canina",
@@ -364,7 +368,7 @@ export default function GICPage() {
       </section>
 
       <FAQSection />
-      <FinalCTA />
+      <FinalCTA initialMonth={agendaMonth()} />
     </>
   );
 }

@@ -7,11 +7,11 @@ import { ArrowRight, Star, ShieldCheck, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { DiagnosticQuiz } from "@/components/sections/DiagnosticQuiz";
 import { trackEvent } from "@/lib/analytics";
-import { useAgendaMonth } from "@/lib/agenda";
+import { useAgendaMonth } from "@/lib/useAgendaMonth";
 
-export function Hero() {
+export function Hero({ initialMonth = null }: { initialMonth?: string | null }) {
   const [quizOpen, setQuizOpen] = useState(false);
-  const mes = useAgendaMonth();
+  const mes = useAgendaMonth(initialMonth);
 
   const openQuiz = () => {
     trackEvent("quiz_cta_click", { source: "hero" });

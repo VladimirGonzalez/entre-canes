@@ -8,6 +8,10 @@ import { Button } from "@/components/ui/Button";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { TESTIMONIALS, buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
+import { agendaMonth } from "@/lib/agenda";
+
+// El mes de agenda viaja en el HTML: lo regeneramos cada hora.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Resultados — Casos reales de transformación",
@@ -145,7 +149,7 @@ export default function ResultadosPage() {
         </Container>
       </section>
 
-      <FinalCTA />
+      <FinalCTA initialMonth={agendaMonth()} />
     </>
   );
 }

@@ -6,6 +6,10 @@ import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { agendaMonth } from "@/lib/agenda";
+
+// El mes de agenda viaja en el HTML: lo regeneramos cada hora.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Servicios — Adiestramiento, conducta y educación canina",
@@ -41,7 +45,7 @@ export default function ServiciosPage() {
       <ServicesGrid showAll showHeader={false} />
       <HowItWorks />
       <FAQSection />
-      <FinalCTA />
+      <FinalCTA initialMonth={agendaMonth()} />
     </>
   );
 }

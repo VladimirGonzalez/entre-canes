@@ -13,6 +13,10 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { ServiceAreas } from "@/components/sections/ServiceAreas";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { agendaMonth } from "@/lib/agenda";
+
+// El mes de agenda viaja en el HTML: lo regeneramos cada hora.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Adiestramiento canino con metodo. Resultados reales.",
@@ -40,7 +44,7 @@ export default function HomePage() {
           }),
         }}
       />
-      <Hero />
+      <Hero initialMonth={agendaMonth()} />
       <SocialProof />
       <BrandStrip />
       <PainPoints />
@@ -51,7 +55,7 @@ export default function HomePage() {
       <Testimonials />
       <ServiceAreas />
       <FAQSection />
-      <FinalCTA />
+      <FinalCTA initialMonth={agendaMonth()} />
     </>
   );
 }

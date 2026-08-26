@@ -8,6 +8,10 @@ import { Button } from "@/components/ui/Button";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { PRODUCTS, buildWhatsAppLink } from "@/lib/constants";
 import { formatPrice } from "@/lib/utils";
+import { agendaMonth } from "@/lib/agenda";
+
+// El mes de agenda viaja en el HTML: lo regeneramos cada hora.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Tienda — Accesorios y kits curados para tu perro",
@@ -168,7 +172,7 @@ export default function TiendaPage() {
         </Container>
       </section>
 
-      <FinalCTA />
+      <FinalCTA initialMonth={agendaMonth()} />
     </>
   );
 }

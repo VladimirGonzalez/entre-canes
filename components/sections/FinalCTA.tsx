@@ -6,10 +6,10 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
-import { useAgendaMonth } from "@/lib/agenda";
+import { useAgendaMonth } from "@/lib/useAgendaMonth";
 
-export function FinalCTA() {
-  const mes = useAgendaMonth();
+export function FinalCTA({ initialMonth = null }: { initialMonth?: string | null }) {
+  const mes = useAgendaMonth(initialMonth);
 
   return (
     <section className="section">

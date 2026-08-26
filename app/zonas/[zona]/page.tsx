@@ -18,8 +18,12 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { SITE, buildWhatsAppLink } from "@/lib/constants";
 import { ZONAS, getZona, zonaWhatsAppMessage } from "@/lib/zonas";
+import { agendaMonth } from "@/lib/agenda";
 
 type Props = { params: { zona: string } };
+
+// El mes de agenda viaja en el HTML: lo regeneramos cada hora.
+export const revalidate = 3600;
 
 export function generateStaticParams() {
   return ZONAS.map((z) => ({ zona: z.slug }));
@@ -173,7 +177,7 @@ export default function ZonaPage({ params }: Props) {
         </Container>
       </section>
 
-      <FinalCTA />
+      <FinalCTA initialMonth={agendaMonth()} />
     </>
   );
 }

@@ -6,6 +6,10 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel, SectionTitle } from "@/components/ui/SectionLabel";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { SocialProof } from "@/components/sections/SocialProof";
+import { agendaMonth } from "@/lib/agenda";
+
+// El mes de agenda viaja en el HTML: lo regeneramos cada hora.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Sobre nosotros — Quiénes somos y por qué hacemos esto",
@@ -139,7 +143,7 @@ export default function SobreNosotrosPage() {
         </Container>
       </section>
 
-      <FinalCTA />
+      <FinalCTA initialMonth={agendaMonth()} />
     </>
   );
 }

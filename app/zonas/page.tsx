@@ -6,6 +6,10 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { zonasByRegion } from "@/lib/zonas";
+import { agendaMonth } from "@/lib/agenda";
+
+// El mes de agenda viaja en el HTML: lo regeneramos cada hora.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Zonas de cobertura — Adiestramiento canino a domicilio en GBA y CABA",
@@ -89,7 +93,7 @@ export default function ZonasPage() {
         </Container>
       </section>
 
-      <FinalCTA />
+      <FinalCTA initialMonth={agendaMonth()} />
     </>
   );
 }
