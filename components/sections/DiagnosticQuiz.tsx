@@ -6,6 +6,7 @@ import {
   ArrowLeft,
   ArrowRight,
   Check,
+  MapPin,
   MessageCircle,
   RotateCcw,
   Sparkles,
@@ -19,6 +20,7 @@ import {
   type QuizQuestion,
 } from "@/lib/quiz";
 import { buildWhatsAppLink, METRICS, SERVICES } from "@/lib/constants";
+import { getZona } from "@/lib/zonas";
 import { trackEvent } from "@/lib/analytics";
 
 interface DiagnosticQuizProps {
@@ -98,7 +100,10 @@ export function DiagnosticQuiz({ open, onClose }: DiagnosticQuizProps) {
       question: questionId,
       answer: value,
     });
-    // Auto-avance suave en preguntas single-choice
+    // Si la opción pide detalle escrito, nos quedamos en el paso.
+    const picked = currentQuestion?.options?.find((o) => o.id === value);
+    if (picked?.requiresText) return;
+    // Auto-avance suave en el resto de las single-choice
     window.setTimeout(() => {
       setDirection(1);
       setStep((s) => s + 1);
@@ -108,6 +113,25 @@ export function DiagnosticQuiz({ open, onClose }: DiagnosticQuizProps) {
   const setTextAnswer = (name: string, value: string) => {
     setAnswers((a) => ({ ...a, [name]: value }));
   };
+
+  /** Campo de texto libre de la opción elegida (ej: "Otra cosa"), si aplica. */
+  const activeCustomField = useMemo(() => {
+    if (!currentQuestion || currentQuestion.type === "text") return null;
+    const selected = (answers as Record<string, string | undefined>)[
+      currentQuestion.id
+    ];
+    return (
+      currentQuestion.options?.find((o) => o.id === selected)?.requiresText ??
+      null
+    );
+  }, [currentQuestion, answers]);
+
+  /** Con opción libre hay que escribir algo antes de seguir. */
+  const customFieldFilled = activeCustomField
+    ? ((answers as Record<string, string | undefined>)[
+        activeCustomField.name
+      ]?.trim().length ?? 0) >= 3
+    : true;
 
   // Validación: ¿puede avanzar?
   const canAdvance = useMemo(() => {
@@ -198,6 +222,7 @@ export function DiagnosticQuiz({ open, onClose }: DiagnosticQuizProps) {
                     <QuestionScreen
                       question={currentQuestion}
                       answers={answers}
+                      activeCustomField={activeCustomField}
                       onSelectSingle={setSingleAnswer}
                       onChangeText={setTextAnswer}
                     />
@@ -227,6 +252,16 @@ export function DiagnosticQuiz({ open, onClose }: DiagnosticQuizProps) {
                     Ver mi diagnóstico
                     <ArrowRight className="h-4 w-4" />
                   </button>
+                ) : activeCustomField ? (
+                  <button
+                    type="button"
+                    onClick={goNext}
+                    disabled={!customFieldFilled}
+                    className="inline-flex items-center gap-2 rounded-full bg-brand-amber px-5 py-3 text-sm font-semibold text-brand-ink transition-all hover:bg-brand-amberDark hover:text-white hover:shadow-glow disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-brand-amber disabled:hover:text-brand-ink disabled:hover:shadow-none"
+                  >
+                    {customFieldFilled ? "Continuar" : "Contanos brevemente"}
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
                 ) : (
                   <p className="text-xs text-brand-mist">
                     {canAdvance
@@ -249,14 +284,18 @@ export function DiagnosticQuiz({ open, onClose }: DiagnosticQuizProps) {
 function QuestionScreen({
   question,
   answers,
+  activeCustomField,
   onSelectSingle,
   onChangeText,
 }: {
   question: QuizQuestion;
   answers: QuizAnswers;
+  activeCustomField: { name: string; label: string; placeholder: string } | null;
   onSelectSingle: (questionId: string, value: string) => void;
   onChangeText: (name: string, value: string) => void;
 }) {
+  const values = answers as Record<string, string | undefined>;
+
   return (
     <div>
       <h2 className="text-xl font-semibold leading-tight text-brand-ink sm:text-2xl">
@@ -279,13 +318,28 @@ function QuestionScreen({
                     </span>
                   )}
                 </span>
-                <input
-                  type="text"
-                  value={(answers as Record<string, string>)[f.name] ?? ""}
-                  onChange={(e) => onChangeText(f.name, e.target.value)}
-                  placeholder={f.placeholder}
-                  className="mt-2 w-full rounded-xl border border-brand-line bg-brand-paper px-4 py-3 text-sm text-brand-ink outline-none transition-all duration-200 placeholder:text-brand-mist focus:border-brand-ink focus:bg-white focus:ring-[3px] focus:ring-brand-amber/20"
-                />
+                {f.kind === "select" ? (
+                  <select
+                    value={values[f.name] ?? ""}
+                    onChange={(e) => onChangeText(f.name, e.target.value)}
+                    className="mt-2 w-full appearance-none rounded-xl border border-brand-line bg-brand-paper px-4 py-3 text-sm text-brand-ink outline-none transition-all duration-200 focus:border-brand-ink focus:bg-white focus:ring-[3px] focus:ring-brand-amber/20"
+                  >
+                    <option value="">{f.placeholder}</option>
+                    {f.options?.map((o) => (
+                      <option key={o.value} value={o.value}>
+                        {o.label}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    type="text"
+                    value={values[f.name] ?? ""}
+                    onChange={(e) => onChangeText(f.name, e.target.value)}
+                    placeholder={f.placeholder}
+                    className="mt-2 w-full rounded-xl border border-brand-line bg-brand-paper px-4 py-3 text-sm text-brand-ink outline-none transition-all duration-200 placeholder:text-brand-mist focus:border-brand-ink focus:bg-white focus:ring-[3px] focus:ring-brand-amber/20"
+                  />
+                )}
               </label>
             ))}
             <p className="rounded-xl bg-brand-paper p-3 text-xs text-brand-slate">
@@ -346,6 +400,36 @@ function QuestionScreen({
             })}
           </div>
         )}
+
+        {/* Detalle escrito cuando eligen la opción libre */}
+        {activeCustomField && (
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-4 rounded-2xl border border-brand-amber/40 bg-brand-amber/5 p-4"
+          >
+            <label className="block">
+              <span className="text-sm font-medium text-brand-ink">
+                {activeCustomField.label}
+              </span>
+              <textarea
+                autoFocus
+                rows={3}
+                value={values[activeCustomField.name] ?? ""}
+                onChange={(e) =>
+                  onChangeText(activeCustomField.name, e.target.value)
+                }
+                placeholder={activeCustomField.placeholder}
+                className="mt-2 w-full resize-y rounded-xl border border-brand-line bg-white px-4 py-3 text-sm leading-relaxed text-brand-ink outline-none transition-all duration-200 placeholder:text-brand-mist focus:border-brand-ink focus:ring-[3px] focus:ring-brand-amber/20"
+              />
+            </label>
+            <p className="mt-2 text-xs text-brand-slate">
+              Contalo con tus palabras: cuanto más concreto, mejor te podemos
+              orientar.
+            </p>
+          </motion.div>
+        )}
       </div>
     </div>
   );
@@ -366,6 +450,7 @@ function ResultScreen({
   const rec = useMemo(() => getRecommendation(answers), [answers]);
   const service = SERVICES.find((s) => s.slug === rec.serviceSlug);
   const dogLabel = answers.dogName ?? "tu perro";
+  const zona = answers.zone ? getZona(answers.zone) : undefined;
 
   const urgencyColor = {
     baja: "bg-emerald-50 text-emerald-700 border-emerald-200",
@@ -430,10 +515,54 @@ function ResultScreen({
         <p className="text-xs font-semibold uppercase tracking-wider text-brand-mist">
           Tu diagnóstico
         </p>
+        {answers.problemCustom?.trim() && (
+          <p className="mt-2 border-l-2 border-brand-amber pl-3 text-sm italic leading-relaxed text-brand-ink">
+            “{answers.problemCustom.trim()}”
+          </p>
+        )}
         <p className="mt-2 text-sm leading-relaxed text-brand-slate sm:text-[15px]">
           {rec.diagnosis}
         </p>
       </motion.div>
+
+      {/* Cobertura de zona */}
+      {answers.zone && (
+        <motion.div
+          className={
+            "mt-5 flex items-start gap-3 rounded-2xl border p-4 " +
+            (zona
+              ? "border-emerald-200 bg-emerald-50"
+              : "border-brand-line bg-brand-paper")
+          }
+          {...stagger(0.32)}
+        >
+          <MapPin
+            className={
+              "mt-0.5 h-4 w-4 shrink-0 " +
+              (zona ? "text-emerald-600" : "text-brand-amberDark")
+            }
+          />
+          <p className="text-sm leading-relaxed text-brand-slate">
+            {zona ? (
+              <>
+                <span className="font-semibold text-emerald-800">
+                  Sí, atendemos en {zona.name}.
+                </span>{" "}
+                Trabajamos a domicilio en tu zona, así entrenamos donde las
+                conductas pasan de verdad.
+              </>
+            ) : (
+              <>
+                <span className="font-semibold text-brand-ink">
+                  Tu zona no está en la lista.
+                </span>{" "}
+                Escribinos igual: según el caso y la agenda llegamos a
+                localidades vecinas.
+              </>
+            )}
+          </p>
+        </motion.div>
+      )}
 
       {/* Service detail */}
       {service && (

@@ -3,6 +3,8 @@
 // Motor de preguntas y recomendaciones personalizadas.
 // ============================================================
 
+import { ZONAS } from "@/lib/zonas";
+
 export type QuizOptionId = string;
 
 export type QuizQuestion = {
@@ -19,6 +21,15 @@ export type QuizQuestion = {
     hint?: string;
     /** Emoji decorativo opcional */
     emoji?: string;
+    /**
+     * Si está presente, al elegir esta opción se pide que la persona escriba
+     * su caso en sus palabras. El paso no auto-avanza hasta que lo complete.
+     */
+    requiresText?: {
+      name: string;
+      label: string;
+      placeholder: string;
+    };
   }[];
   /** Para tipo "text" */
   fields?: {
@@ -26,6 +37,9 @@ export type QuizQuestion = {
     label: string;
     placeholder: string;
     optional?: boolean;
+    /** "select" muestra un desplegable con `options` */
+    kind?: "text" | "select";
+    options?: { value: string; label: string }[];
   }[];
 };
 
@@ -78,6 +92,18 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
         id: "varios",
         label: "Varios problemas a la vez",
         emoji: "🌀",
+      },
+      {
+        id: "otro",
+        label: "Otra cosa — te la cuento yo",
+        hint: "Escribí tu caso puntual",
+        emoji: "✍️",
+        requiresText: {
+          name: "problemCustom",
+          label: "Contanos qué pasa con tu perro",
+          placeholder:
+            "Ej: se sube a la mesa a comer, no se deja cortar las uñas, persigue autos, se escapa por el portón...",
+        },
       },
     ],
   },
@@ -132,9 +158,21 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: "context",
     title: "Para personalizar tu diagnóstico",
-    subtitle: "Estos datos son opcionales — pero ayudan a darte una respuesta más precisa.",
+    subtitle:
+      "Con tu zona te confirmamos si llegamos hasta tu casa. El resto ayuda a darte una respuesta más precisa.",
     type: "text",
     fields: [
+      {
+        name: "zone",
+        label: "¿De qué zona sos?",
+        placeholder: "Elegí tu zona",
+        optional: true,
+        kind: "select",
+        options: [
+          ...ZONAS.map((z) => ({ value: z.slug, label: z.name })),
+          { value: "otra", label: "Otra zona / no está en la lista" },
+        ],
+      },
       {
         name: "dogName",
         label: "Nombre de tu perro",
@@ -156,6 +194,10 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
 // ============================================================
 export type QuizAnswers = {
   problem?: string;
+  /** Texto libre cuando eligen "Otra cosa" */
+  problemCustom?: string;
+  /** Slug de zona (ver lib/zonas.ts) o "otra" */
+  zone?: string;
   age?: string;
   duration?: string;
   severity?: string;
@@ -190,7 +232,8 @@ export type Recommendation = {
  * Devuelve la recomendación personalizada según las respuestas del quiz.
  */
 export function getRecommendation(answers: QuizAnswers): Recommendation {
-  const { problem, age, duration, severity, dogName, breed } = answers;
+  const { problem, problemCustom, age, duration, severity, dogName, breed, zone } =
+    answers;
 
   const dogLabel = dogName ? dogName : "mi perro";
   const breedLabel = breed ? ` (${breed})` : "";
@@ -208,9 +251,11 @@ export function getRecommendation(answers: QuizAnswers): Recommendation {
         dogLabel,
         breedLabel,
         problem,
+        problemCustom,
         age,
         duration,
         severity,
+        zone,
       }),
     };
   }
@@ -247,9 +292,11 @@ export function getRecommendation(answers: QuizAnswers): Recommendation {
         dogLabel,
         breedLabel,
         problem,
+        problemCustom,
         age,
         duration,
         severity,
+        zone,
       }),
     };
   }
@@ -268,9 +315,11 @@ export function getRecommendation(answers: QuizAnswers): Recommendation {
           dogLabel,
           breedLabel,
           problem,
+          problemCustom,
           age,
           duration,
           severity,
+          zone,
         }),
       };
     }
@@ -285,9 +334,11 @@ export function getRecommendation(answers: QuizAnswers): Recommendation {
         dogLabel,
         breedLabel,
         problem,
+        problemCustom,
         age,
         duration,
         severity,
+        zone,
       }),
     };
   }
@@ -307,9 +358,11 @@ export function getRecommendation(answers: QuizAnswers): Recommendation {
         dogLabel,
         breedLabel,
         problem,
+        problemCustom,
         age,
         duration,
         severity,
+        zone,
       }),
     };
   }
@@ -327,9 +380,33 @@ export function getRecommendation(answers: QuizAnswers): Recommendation {
         dogLabel,
         breedLabel,
         problem,
+        problemCustom,
         age,
         duration,
         severity,
+        zone,
+      }),
+    };
+  }
+
+  // ─── 6) Caso puntual que no entra en las categorías ───────────
+  if (problem === "otro") {
+    return {
+      serviceSlug: "domicilio",
+      diagnosis:
+        "Lo que contás no entra en las categorías típicas, y eso es más común de lo que parece: cada perro tiene su combinación. Para casos puntuales lo más eficiente es vernos en tu casa, observar la conducta donde realmente ocurre y armar un plan a medida en lugar de aplicar una receta genérica.",
+      headline: "Asesoramiento a domicilio",
+      urgency: "media",
+      whatsappMessage: buildWhatsAppMessage({
+        diagnosis: `Tengo un caso puntual con ${dogLabel}${breedLabel} y quiero asesoramiento`,
+        dogLabel,
+        breedLabel,
+        problem,
+        problemCustom,
+        age,
+        duration,
+        severity,
+        zone,
       }),
     };
   }
@@ -346,9 +423,11 @@ export function getRecommendation(answers: QuizAnswers): Recommendation {
       dogLabel,
       breedLabel,
       problem,
+      problemCustom,
       age,
       duration,
       severity,
+      zone,
     }),
   };
 }
@@ -361,11 +440,14 @@ function buildWhatsAppMessage(args: {
   dogLabel: string;
   breedLabel: string;
   problem?: string;
+  problemCustom?: string;
   age?: string;
   duration?: string;
   severity?: string;
+  zone?: string;
 }) {
-  const { diagnosis, problem, age, duration, severity } = args;
+  const { diagnosis, problem, problemCustom, age, duration, severity, zone } =
+    args;
 
   const problemLabels: Record<string, string> = {
     "tira-correa": "Tira de la correa",
@@ -376,7 +458,20 @@ function buildWhatsAppMessage(args: {
     cachorro: "Cachorro que arranca de cero",
     obediencia: "Obediencia / no escucha",
     varios: "Varios problemas a la vez",
+    otro: "Caso puntual",
   };
+
+  // Si escribieron su caso, eso vale más que la etiqueta genérica.
+  const problemLine =
+    problem === "otro" && problemCustom?.trim()
+      ? `• Problema: ${problemCustom.trim()}`
+      : problem
+        ? `• Problema: ${problemLabels[problem] ?? problem}`
+        : null;
+
+  const zoneLine = zone
+    ? `• Zona: ${ZONAS.find((z) => z.slug === zone)?.name ?? "Otra (a confirmar)"}`
+    : null;
 
   const ageLabels: Record<string, string> = {
     puppy: "Cachorro (<6m)",
@@ -402,10 +497,11 @@ function buildWhatsAppMessage(args: {
     `¡Hola Entre Canes! ${diagnosis}.`,
     "",
     "Mi diagnóstico online:",
-    problem ? `• Problema: ${problemLabels[problem] ?? problem}` : null,
+    problemLine,
     age ? `• Edad: ${ageLabels[age] ?? age}` : null,
     duration ? `• Hace: ${durationLabels[duration] ?? duration}` : null,
     severity ? `• Gravedad: ${severityLabels[severity] ?? severity}` : null,
+    zoneLine,
     "",
     "¿Cuándo podemos hablar?",
   ].filter(Boolean);
