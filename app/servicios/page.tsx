@@ -7,14 +7,16 @@ import { HowItWorks } from "@/components/sections/HowItWorks";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { agendaMonth } from "@/lib/agenda";
+import { GIC_ENABLED } from "@/lib/constants";
 
 // El mes de agenda viaja en el HTML: lo regeneramos cada hora.
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Servicios — Adiestramiento, conducta y educación canina",
-  description:
-    "Programas de adiestramiento básico, modificación de conducta, Grupos GIC y educación temprana para cachorros. Plan a medida. Resultados sostenibles.",
+  description: GIC_ENABLED
+    ? "Programas de adiestramiento básico, modificación de conducta, Grupos GIC y educación temprana para cachorros. Plan a medida. Resultados sostenibles."
+    : "Programas de adiestramiento básico, modificación de conducta, educación temprana para cachorros y asesoramiento a domicilio. Plan a medida. Resultados sostenibles.",
 };
 
 export default function ServiciosPage() {

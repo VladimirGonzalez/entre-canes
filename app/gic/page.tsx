@@ -17,8 +17,10 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel, SectionTitle } from "@/components/ui/SectionLabel";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { redirect } from "next/navigation";
 import {
   GIC_GROUPS,
+  GIC_ENABLED,
   buildWhatsAppLink,
   WHATSAPP_MESSAGES,
 } from "@/lib/constants";
@@ -28,6 +30,8 @@ import { agendaMonth } from "@/lib/agenda";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
+  // Mientras GIC está desactivado la página redirige: que no se indexe.
+  robots: GIC_ENABLED ? undefined : { index: false, follow: false },
   title: "Grupos GIC — Grupos de Interacción Canina",
   description:
     "Los GIC son espacios diseñados para que perros y dueños aprendan a convivir de forma equilibrada. 4 grupos según la necesidad: Cachorros, Adultos, Miedo y Reactividad.",
@@ -88,6 +92,10 @@ const COMPARE = [
 ];
 
 export default function GICPage() {
+  // GIC desactivado: mandamos a servicios con un 307 (temporal), así al
+  // reactivarlo los buscadores vuelven a esta página sin arrastrar un 308.
+  if (!GIC_ENABLED) redirect("/servicios");
+
   return (
     <>
       {/* HERO */}

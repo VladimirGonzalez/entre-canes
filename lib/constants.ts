@@ -3,12 +3,24 @@
 // Centralizamos copy y datos para que personalizar sea trivial.
 // ============================================================
 
+// ============================================================
+// GIC — interruptor temporal
+// ------------------------------------------------------------
+// En false, los Grupos GIC desaparecen de todo el sitio: menú,
+// servicios, FAQ, footer, formulario de contacto, sitemap, las
+// keywords de SEO y la página /gic (que redirige a /servicios).
+// Poniéndolo en true vuelve todo como estaba. No hace falta
+// tocar nada más.
+// ============================================================
+export const GIC_ENABLED = false;
+
 export const SITE = {
   name: "Entre Canes",
   shortDescription:
     "Escuela canina, adiestramiento y modificación de conducta. Resultados reales, método claro.",
-  description:
-    "Adiestramiento canino profesional, modificación de conducta y Grupos GIC (Grupos de Interacción Canina). Recuperá la convivencia con tu perro en pocas semanas. Reservá tu evaluación gratuita.",
+  description: GIC_ENABLED
+    ? "Adiestramiento canino profesional, modificación de conducta y Grupos GIC (Grupos de Interacción Canina). Recuperá la convivencia con tu perro en pocas semanas. Reservá tu evaluación gratuita."
+    : "Adiestramiento canino profesional, modificación de conducta y educación temprana para cachorros. Recuperá la convivencia con tu perro en pocas semanas. Reservá tu evaluación gratuita.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://entrecanes.com.ar",
   city: process.env.NEXT_PUBLIC_CITY || "Buenos Aires, Argentina",
 };
@@ -67,7 +79,7 @@ export type NavItem = {
   children?: NavItem[];
 };
 
-export const NAVIGATION: NavItem[] = [
+const ALL_NAVIGATION: NavItem[] = [
   { label: "Inicio", href: "/" },
   { label: "Servicios", href: "/servicios" },
   {
@@ -109,6 +121,10 @@ export const NAVIGATION: NavItem[] = [
   { label: "Contacto", href: "/contacto" },
 ];
 
+export const NAVIGATION: NavItem[] = ALL_NAVIGATION.filter(
+  (item) => GIC_ENABLED || item.href !== "/gic"
+);
+
 // ============================================================
 // Servicios
 // ============================================================
@@ -123,7 +139,7 @@ export type Service = {
   whatsappMessage: string;
 };
 
-export const SERVICES: Service[] = [
+const ALL_SERVICES: Service[] = [
   {
     slug: "adiestramiento-basico",
     title: "Adiestramiento básico",
@@ -210,6 +226,10 @@ export const SERVICES: Service[] = [
       "Hola! Quiero un asesoramiento a domicilio. ¿Cubren mi zona?",
   },
 ];
+
+export const SERVICES: Service[] = ALL_SERVICES.filter(
+  (s) => GIC_ENABLED || s.slug !== "gic"
+);
 
 // ============================================================
 // Grupos GIC — Grupos de Interacción Canina
@@ -402,7 +422,9 @@ export const TESTIMONIALS: Testimonial[] = [
     problem: "Le ladraba a todo el mundo, pensé que no había vuelta",
     result: "Convive con mis sobrinos sin problema",
     quote:
-      "Toby venía de la calle, todo le daba miedo y eso lo volvía agresivo. Otros entrenadores me dijeron que era 'caso perdido'. Con el GIC empezó a confiar de nuevo. Hoy es otro perro. No es magia, es paciencia y método.",
+      GIC_ENABLED
+        ? "Toby venía de la calle, todo le daba miedo y eso lo volvía agresivo. Otros entrenadores me dijeron que era 'caso perdido'. Con el GIC empezó a confiar de nuevo. Hoy es otro perro. No es magia, es paciencia y método."
+        : "Toby venía de la calle, todo le daba miedo y eso lo volvía agresivo. Otros entrenadores me dijeron que era 'caso perdido'. Con el trabajo de modificación de conducta empezó a confiar de nuevo. Hoy es otro perro. No es magia, es paciencia y método.",
     rating: 5,
     // Perro mestizo de tamaño mediano
     image:
@@ -452,26 +474,35 @@ export const METRICS = [
 // ============================================================
 // FAQ — Diseñado para eliminar objeciones de compra
 // ============================================================
-export const FAQ: { q: string; a: string }[] = [
+const ALL_FAQ: { q: string; a: string; gicOnly?: boolean }[] = [
   {
     q: "¿En cuántas sesiones voy a ver resultados?",
     a: "Depende del caso, pero la mayoría de las familias notan cambios desde la 1ra a 2da sesión. En programas básicos: 8 a 10 sesiones. En modificación de conducta hay que analizar la gravedad del caso para dar un estimativo personalizado.",
   },
   {
     q: "¿Trabajan con perros agresivos o reactivos?",
-    a: "Sí, son una parte importante de nuestro trabajo. Hicimos modificación de conducta con cientos de casos, incluyendo agresividad entre perros, hacia personas y resguardo de recursos. Para perros que ladran o reaccionan, además, tenemos GIC Reactividad: un grupo específico para trabajar gradualmente. Siempre evaluamos primero.",
+    a: GIC_ENABLED
+      ? "Sí, son una parte importante de nuestro trabajo. Hicimos modificación de conducta con cientos de casos, incluyendo agresividad entre perros, hacia personas y resguardo de recursos. Para perros que ladran o reaccionan, además, tenemos GIC Reactividad: un grupo específico para trabajar gradualmente. Siempre evaluamos primero."
+      : "Sí, son una parte importante de nuestro trabajo. Hicimos modificación de conducta con cientos de casos, incluyendo agresividad entre perros, hacia personas y resguardo de recursos. Trabajamos siempre por debajo del umbral del perro, con avances graduales y medidos. Siempre evaluamos primero.",
   },
   {
+    gicOnly: true,
     q: "¿Qué son los Grupos GIC y por qué funcionan?",
     a: "GIC son nuestros Grupos de Interacción Canina: encuentros supervisados donde tu perro aprende a relacionarse de forma sana. Tenemos 4 grupos según la necesidad: GIC Cachorros (socialización temprana), GIC Adultos (convivencia y control), GIC Miedo (perros inseguros) y GIC Reactividad (perros que ladran o reaccionan). No es una guardería: es entrenamiento social estructurado.",
   },
   {
     q: "¿Sirve para cachorros o sólo para adultos?",
-    a: "Para los dos. Tenemos un programa específico de educación temprana (2 a 5 meses) y el GIC Cachorros que es la mejor inversión que podés hacer: previene el 80% de los problemas que vemos en adultos. Para perros adultos también funciona, sólo lleva más tiempo y constancia.",
+    a: GIC_ENABLED
+      ? "Para los dos. Tenemos un programa específico de educación temprana (2 a 5 meses) y el GIC Cachorros que es la mejor inversión que podés hacer: previene el 80% de los problemas que vemos en adultos. Para perros adultos también funciona, sólo lleva más tiempo y constancia."
+      : "Para los dos. Tenemos un programa específico de educación temprana (2 a 5 meses), que es la mejor inversión que podés hacer: previene el 80% de los problemas que vemos en adultos. Para perros adultos también funciona, sólo lleva más tiempo y constancia.",
   },
   {
-    q: "¿Las clases son individuales o grupales?",
-    a: "Las dos, según lo que necesite tu perro. Adiestramiento básico y modificación de conducta arrancan 1:1 para personalizar. Los Grupos GIC son grupales por diseño. En la evaluación inicial te recomendamos qué formato te conviene.",
+    q: GIC_ENABLED
+      ? "¿Las clases son individuales o grupales?"
+      : "¿Las clases son individuales?",
+    a: GIC_ENABLED
+      ? "Las dos, según lo que necesite tu perro. Adiestramiento básico y modificación de conducta arrancan 1:1 para personalizar. Los Grupos GIC son grupales por diseño. En la evaluación inicial te recomendamos qué formato te conviene."
+      : "Sí. Hoy trabajamos con clases individuales: adiestramiento básico y modificación de conducta arrancan 1:1 para personalizar el plan según tu perro, tu casa y tu rutina. En la evaluación inicial te explicamos cómo se organiza el proceso.",
   },
   {
     q: "¿Atienden a domicilio? ¿Qué zonas cubren?",
@@ -490,6 +521,8 @@ export const FAQ: { q: string; a: string }[] = [
     a: "Te acompañamos hasta lograrlo. Si después de la cantidad de sesiones acordadas no hay avance, ajustamos el plan sin costo extra. La transformación es nuestro trabajo, no la cantidad de clases.",
   },
 ];
+
+export const FAQ = ALL_FAQ.filter((f) => GIC_ENABLED || !f.gicOnly);
 
 // ============================================================
 // Tienda — productos demo

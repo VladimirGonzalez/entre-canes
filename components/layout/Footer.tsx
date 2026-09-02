@@ -9,6 +9,7 @@ import {
   buildWhatsAppLink,
   WHATSAPP_MESSAGES,
   SERVICES,
+  GIC_ENABLED,
 } from "@/lib/constants";
 import { ZONAS } from "@/lib/zonas";
 
@@ -127,14 +128,16 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/gic"
-                  className="text-brand-slate transition-colors hover:text-brand-ink"
-                >
-                  Grupos GIC — Interacción canina
-                </Link>
-              </li>
+              {GIC_ENABLED && (
+                <li>
+                  <Link
+                    href="/gic"
+                    className="text-brand-slate transition-colors hover:text-brand-ink"
+                  >
+                    Grupos GIC — Interacción canina
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link
                   href="/tienda"

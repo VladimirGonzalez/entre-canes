@@ -4,11 +4,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { buildWhatsAppLink } from "@/lib/constants";
+import { buildWhatsAppLink, GIC_ENABLED } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
-const TOPICS = [
+const ALL_TOPICS = [
   { value: "evaluacion", label: "Evaluación inicial gratuita" },
   { value: "conducta", label: "Modificación de conducta" },
   { value: "gic", label: "Grupos GIC — Interacción canina" },
@@ -17,6 +17,8 @@ const TOPICS = [
   { value: "tienda", label: "Consulta sobre tienda" },
   { value: "otro", label: "Otra consulta" },
 ];
+
+const TOPICS = ALL_TOPICS.filter((t) => GIC_ENABLED || t.value !== "gic");
 
 const inputClass =
   "w-full rounded-xl border border-brand-line bg-brand-paper px-4 py-3 text-sm text-brand-ink outline-none transition-all duration-200 placeholder:text-brand-mist focus:border-brand-ink focus:bg-white focus:ring-[3px] focus:ring-brand-amber/20";

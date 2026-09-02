@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
+import { GIC_ENABLED } from "@/lib/constants";
 
-const ITEMS = [
+const ALL_ITEMS = [
   "Método científico",
   "Sin castigo",
   "Refuerzo positivo",
@@ -10,6 +11,10 @@ const ITEMS = [
   "Grupos GIC originales",
   "Resultados medibles",
 ];
+
+const ITEMS = ALL_ITEMS.filter(
+  (it) => GIC_ENABLED || !it.toLowerCase().includes("gic")
+);
 
 /**
  * Marquee horizontal con los pilares de marca.

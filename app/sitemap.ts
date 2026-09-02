@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE } from "@/lib/constants";
+import { SITE, GIC_ENABLED } from "@/lib/constants";
 import { ZONAS } from "@/lib/zonas";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
     "/servicios",
-    "/gic",
+    ...(GIC_ENABLED ? ["/gic"] : []),
     "/tienda",
     "/sobre-nosotros",
     "/resultados",

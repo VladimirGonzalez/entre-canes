@@ -7,7 +7,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { StickyMobileCTA } from "@/components/layout/StickyMobileCTA";
-import { CONTACT, SITE, SOCIAL } from "@/lib/constants";
+import { CONTACT, SITE, SOCIAL, GIC_ENABLED } from "@/lib/constants";
 import { ZONAS } from "@/lib/zonas";
 
 export const viewport: Viewport = {
@@ -27,8 +27,7 @@ export const metadata: Metadata = {
     "adiestramiento canino",
     "escuela canina",
     "modificación de conducta",
-    "Grupos GIC",
-    "Grupos de Interacción Canina",
+    ...(GIC_ENABLED ? ["Grupos GIC", "Grupos de Interacción Canina"] : []),
     "adiestrador profesional",
     "perro agresivo",
     "perro reactivo",
