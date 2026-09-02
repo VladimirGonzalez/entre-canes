@@ -1,12 +1,13 @@
 "use client";
 
-import { ArrowRight, MessageCircle, Clock, Calendar } from "lucide-react";
+import { ArrowRight, MessageCircle, Clock, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import { useAgendaMonth } from "@/lib/useAgendaMonth";
+import { QuizCTA } from "@/components/ui/QuizCTA";
 
 export function FinalCTA({ initialMonth = null }: { initialMonth?: string | null }) {
   const mes = useAgendaMonth(initialMonth);
@@ -34,33 +35,25 @@ export function FinalCTA({ initialMonth = null }: { initialMonth?: string | null
                 </span>
 
                 <h2 className="mt-5 text-display-xl">
-                  El primer paso es escribirnos.
+                  El primer paso lleva 60 segundos.
                   <br />
                   El resto, lo hacemos juntos.
                 </h2>
 
                 <p className="mt-4 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
-                  La evaluación inicial es gratuita y sin compromiso. En 20 minutos
-                  vamos a saber qué le pasa a tu perro y qué se puede hacer.
+                  Hacé el diagnóstico gratuito: en 60 segundos te decimos qué le
+                  pasa a tu perro, qué programa le conviene y en cuánto tiempo se
+                  ven cambios. Sin compromiso.
                 </p>
               </div>
 
               <div className="lg:col-span-5">
                 <div className="space-y-3">
-                  <Button
-                    href={buildWhatsAppLink(WHATSAPP_MESSAGES.evaluacion)}
-                    external
-                    variant="amber"
-                    size="lg"
-                    fullWidth
-                    onClick={() =>
-                      trackEvent("cta_reservar_click", { source: "final-cta" })
-                    }
-                  >
-                    <Calendar className="h-5 w-5" />
-                    Reservar evaluación gratuita
+                  <QuizCTA source="final-cta" variant="amber" size="lg" fullWidth>
+                    <Sparkles className="h-5 w-5" />
+                    Empezar diagnóstico gratis
                     <ArrowRight className="h-5 w-5" />
-                  </Button>
+                  </QuizCTA>
 
                   <Button
                     href={buildWhatsAppLink(WHATSAPP_MESSAGES.default)}

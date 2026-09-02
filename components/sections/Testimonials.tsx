@@ -8,7 +8,7 @@ import { ArrowLeft, ArrowRight, Quote, Star } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionLabel";
 import { Reveal } from "@/components/ui/Reveal";
-import { Button } from "@/components/ui/Button";
+import { QuizCTA } from "@/components/ui/QuizCTA";
 import {
   TESTIMONIALS,
   buildWhatsAppLink,
@@ -207,17 +207,10 @@ export function Testimonials() {
 
               {/* CTA: leer un caso es el momento de mayor intención */}
               <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
-                <Button
-                  href={buildWhatsAppLink(WHATSAPP_MESSAGES.evaluacion)}
-                  external
-                  variant="amber"
-                  onClick={() =>
-                    trackEvent("cta_reservar_click", { source: "testimonios" })
-                  }
-                >
+                <QuizCTA source="testimonios" variant="amber">
                   Quiero un cambio así con mi perro
                   <ArrowRight className="h-4 w-4" />
-                </Button>
+                </QuizCTA>
                 <Link
                   href="/resultados"
                   className="group inline-flex items-center gap-2 px-1 text-sm font-medium text-white/70 transition-colors hover:text-white"

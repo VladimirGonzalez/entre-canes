@@ -9,7 +9,7 @@ import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 const ALL_TOPICS = [
-  { value: "evaluacion", label: "Evaluación inicial gratuita" },
+  { value: "evaluacion", label: "Diagnóstico y primera consulta" },
   { value: "conducta", label: "Modificación de conducta" },
   { value: "gic", label: "Grupos GIC — Interacción canina" },
   { value: "cachorro", label: "Educación temprana cachorros" },

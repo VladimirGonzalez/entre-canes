@@ -9,7 +9,7 @@ import { CONTACT, SITE, buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/const
 export const metadata: Metadata = {
   title: "Contacto — Hablemos de tu perro",
   description:
-    "Escribinos por WhatsApp o completá el formulario. Respondemos en menos de 1 hora hábil. La evaluación inicial es gratuita.",
+    "Escribinos por WhatsApp o completá el formulario. Respondemos en menos de 1 hora hábil. El diagnóstico online es gratuito.",
 };
 
 const CHANNELS = [
@@ -54,7 +54,7 @@ export default function ContactoPage() {
                 Hablemos de tu perro.
               </h1>
               <p className="mt-4 text-base leading-relaxed text-brand-slate sm:text-lg">
-                La evaluación inicial es gratuita y sin compromiso. Elegí el canal que prefieras: respondemos rápido, sin guiones automáticos.
+                El diagnóstico online es gratuito y sin compromiso. Elegí el canal que prefieras: respondemos rápido, sin guiones automáticos.
               </p>
 
               <ul className="mt-8 space-y-3">

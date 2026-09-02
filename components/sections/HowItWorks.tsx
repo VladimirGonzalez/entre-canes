@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionLabel";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
+import { QuizCTA } from "@/components/ui/QuizCTA";
 import { HOW_IT_WORKS, buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 
@@ -63,18 +64,10 @@ export function HowItWorks() {
 
         <Reveal>
           <div className="mt-12 flex justify-center">
-            <Button
-              href={buildWhatsAppLink(WHATSAPP_MESSAGES.evaluacion)}
-              external
-              variant="primary"
-              size="lg"
-              onClick={() =>
-                trackEvent("cta_reservar_click", { source: "how-it-works" })
-              }
-            >
-              Empezar con la evaluación gratuita
+            <QuizCTA source="how-it-works" variant="primary" size="lg">
+              Empezar con el diagnóstico gratis
               <ArrowRight className="h-4 w-4" />
-            </Button>
+            </QuizCTA>
           </div>
         </Reveal>
       </Container>

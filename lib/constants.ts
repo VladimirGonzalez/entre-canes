@@ -19,8 +19,8 @@ export const SITE = {
   shortDescription:
     "Escuela canina, adiestramiento y modificación de conducta. Resultados reales, método claro.",
   description: GIC_ENABLED
-    ? "Adiestramiento canino profesional, modificación de conducta y Grupos GIC (Grupos de Interacción Canina). Recuperá la convivencia con tu perro en pocas semanas. Reservá tu evaluación gratuita."
-    : "Adiestramiento canino profesional, modificación de conducta y educación temprana para cachorros. Recuperá la convivencia con tu perro en pocas semanas. Reservá tu evaluación gratuita.",
+    ? "Adiestramiento canino profesional, modificación de conducta y Grupos GIC (Grupos de Interacción Canina). Recuperá la convivencia con tu perro en pocas semanas. Hacé tu diagnóstico online gratis."
+    : "Adiestramiento canino profesional, modificación de conducta y educación temprana para cachorros. Recuperá la convivencia con tu perro en pocas semanas. Hacé tu diagnóstico online gratis.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://entrecanes.com.ar",
   city: process.env.NEXT_PUBLIC_CITY || "Buenos Aires, Argentina",
 };
@@ -53,7 +53,7 @@ export const WHATSAPP_MESSAGES = {
   default:
     "Hola Entre Canes! Quiero más información sobre el adiestramiento de mi perro 🐶",
   evaluacion:
-    "Hola! Me gustaría reservar la evaluación gratuita para mi perro. ¿Tienen lugar esta semana?",
+    "Hola! Quiero coordinar una primera consulta por el caso de mi perro. ¿Tienen lugar esta semana?",
   gic: "Hola! Quiero info sobre los Grupos GIC. ¿Cuándo arranca el próximo?",
   gicCachorros: "Hola! Quiero info sobre GIC Cachorros 🐶",
   gicAdultos: "Hola! Quiero info sobre GIC Adultos 🐕",

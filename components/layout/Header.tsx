@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { QuizCTA } from "@/components/ui/QuizCTA";
 import {
   NAVIGATION,
   buildWhatsAppLink,
@@ -100,18 +101,14 @@ export function Header() {
 
           {/* Right CTA */}
           <div className="flex items-center gap-2">
-            <Button
-              href={buildWhatsAppLink(WHATSAPP_MESSAGES.evaluacion)}
-              external
+            <QuizCTA
+              source="header"
               variant="amber"
               size="sm"
               className="hidden sm:inline-flex"
-              onClick={() =>
-                trackEvent("cta_reservar_click", { source: "header" })
-              }
             >
-              Reservar evaluación gratis
-            </Button>
+              Diagnóstico gratis
+            </QuizCTA>
 
             <button
               type="button"
@@ -157,19 +154,9 @@ export function Header() {
               </nav>
 
               <div className="mt-6 flex flex-col gap-3">
-                <Button
-                  href={buildWhatsAppLink(WHATSAPP_MESSAGES.evaluacion)}
-                  external
-                  variant="amber"
-                  fullWidth
-                  onClick={() =>
-                    trackEvent("cta_reservar_click", {
-                      source: "mobile-menu",
-                    })
-                  }
-                >
-                  Reservar evaluación gratis
-                </Button>
+                <QuizCTA source="mobile-menu" variant="amber" fullWidth>
+                  Empezar diagnóstico gratis
+                </QuizCTA>
                 <Button
                   href={buildWhatsAppLink(WHATSAPP_MESSAGES.default)}
                   external

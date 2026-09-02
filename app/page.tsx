@@ -21,7 +21,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Adiestramiento canino con metodo. Resultados reales.",
   description:
-    "Escuela canina, adiestramiento y modificacion de conducta a domicilio en zona norte y oeste del GBA y CABA. Recupera la convivencia con tu perro en pocas semanas. Reserva tu evaluacion gratuita.",
+    "Escuela canina, adiestramiento y modificacion de conducta a domicilio en zona norte y oeste del GBA y CABA. Recupera la convivencia con tu perro en pocas semanas. Hace tu diagnostico online gratis.",
 };
 
 export default function HomePage() {

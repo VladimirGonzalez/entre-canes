@@ -5,7 +5,7 @@ import Script from "next/script";
 import {
   MapPin,
   MessageCircle,
-  Calendar,
+  Sparkles,
   ArrowRight,
   Check,
 } from "lucide-react";
@@ -13,6 +13,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
+import { QuizCTA } from "@/components/ui/QuizCTA";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -36,18 +37,18 @@ export function generateMetadata({ params }: Props): Metadata {
     zona.name === zona.partido ? zona.name : `${zona.name}, ${zona.partido}`;
   return {
     title: `Adiestramiento canino en ${zona.name} — A domicilio y con método`,
-    description: `Adiestramiento canino y modificación de conducta a domicilio en ${ubicacion}. Paseos sin tirones, obediencia y socialización. Evaluación gratuita.`,
+    description: `Adiestramiento canino y modificación de conducta a domicilio en ${ubicacion}. Paseos sin tirones, obediencia y socialización. Diagnóstico online gratis.`,
     alternates: { canonical: `/zonas/${zona.slug}` },
     openGraph: {
       title: `Adiestramiento canino en ${zona.name} · ${SITE.name}`,
-      description: `Adiestramiento y modificación de conducta a domicilio en ${zona.name}. Reservá tu evaluación gratuita.`,
+      description: `Adiestramiento y modificación de conducta a domicilio en ${zona.name}. Hacé tu diagnóstico gratuito online.`,
     },
   };
 }
 
 const BENEFITS = [
   "Sesiones a domicilio: trabajamos en tu casa y tu barrio",
-  "Evaluación inicial gratuita y sin compromiso",
+  "Diagnóstico online gratuito antes de empezar",
   "Refuerzo positivo: sin castigos, gritos ni dominación",
   "Plan personalizado según tu perro y tu rutina",
   "Seguimiento por WhatsApp entre sesiones",
@@ -113,11 +114,11 @@ export default function ZonaPage({ params }: Props) {
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button href={whatsapp} external variant="amber" size="lg">
-                    <Calendar className="h-5 w-5" />
-                    Reservar evaluación gratuita
+                  <QuizCTA source={`zona-${zona.slug}`} variant="amber" size="lg">
+                    <Sparkles className="h-5 w-5" />
+                    Empezar diagnóstico gratis
                     <ArrowRight className="h-5 w-5" />
-                  </Button>
+                  </QuizCTA>
                   <Button href={whatsapp} external variant="ghost" size="lg">
                     <MessageCircle className="h-5 w-5 text-[#25D366]" />
                     Consultar por WhatsApp

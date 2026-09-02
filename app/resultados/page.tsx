@@ -4,7 +4,7 @@ import { Star, Quote, ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel, SectionTitle } from "@/components/ui/SectionLabel";
-import { Button } from "@/components/ui/Button";
+import { QuizCTA } from "@/components/ui/QuizCTA";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { TESTIMONIALS, buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
@@ -135,15 +135,10 @@ export default function ResultadosPage() {
 
           <Reveal>
             <div className="mt-10 flex justify-center">
-              <Button
-                href={buildWhatsAppLink(WHATSAPP_MESSAGES.evaluacion)}
-                external
-                variant="amber"
-                size="lg"
-              >
-                Quiero la evaluación gratuita
+              <QuizCTA source="resultados" variant="amber" size="lg">
+                Quiero mi diagnóstico gratis
                 <ArrowRight className="h-5 w-5" />
-              </Button>
+              </QuizCTA>
             </div>
           </Reveal>
         </Container>

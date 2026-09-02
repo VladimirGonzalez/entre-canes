@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MessageCircle, CalendarCheck } from "lucide-react";
+import { MessageCircle, Sparkles } from "lucide-react";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
+import { QuizCTA } from "@/components/ui/QuizCTA";
 import { trackEvent } from "@/lib/analytics";
 
 /**
@@ -42,16 +43,14 @@ export function StickyMobileCTA() {
             <MessageCircle className="h-4 w-4 text-[#25D366]" />
             WhatsApp
           </a>
-          <a
-            href={buildWhatsAppLink(WHATSAPP_MESSAGES.evaluacion)}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackEvent("cta_reservar_click", { source: "mobile-bar" })}
+          <QuizCTA
+            source="mobile-bar"
+            raw
             className="flex flex-1 items-center justify-center gap-2 rounded-full bg-brand-amber py-3 text-sm font-semibold text-brand-ink transition-colors hover:bg-brand-amberDark hover:text-white"
           >
-            <CalendarCheck className="h-4 w-4" />
-            Reservar
-          </a>
+            <Sparkles className="h-4 w-4" />
+            Diagnóstico gratis
+          </QuizCTA>
         </div>
       </div>
     </div>
