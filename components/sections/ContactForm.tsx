@@ -14,6 +14,7 @@ const ALL_TOPICS = [
   { value: "gic", label: "Grupos GIC — Interacción canina" },
   { value: "cachorro", label: "Educación temprana cachorros" },
   { value: "domicilio", label: "Asesoramiento a domicilio" },
+  { value: "peluqueria", label: "Peluquería canina (baño y corte)" },
   { value: "tienda", label: "Consulta sobre tienda" },
   { value: "otro", label: "Otra consulta" },
 ];

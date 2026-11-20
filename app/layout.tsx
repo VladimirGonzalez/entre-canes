@@ -34,6 +34,10 @@ export const metadata: Metadata = {
     "perro tira de la correa",
     "perro con miedo",
     "socialización cachorros",
+    "peluquería canina",
+    "baño y corte para perros",
+    "deslanado perros",
+    "estética canina",
     "ansiedad por separación",
     "Buenos Aires",
     "zona norte GBA",
@@ -128,6 +132,7 @@ export default function RootLayout({
                 "Socialización de cachorros",
                 "Reactividad y agresividad canina",
                 "Ansiedad por separación",
+                "Peluquería y estética canina",
               ],
             }),
           }}

@@ -8,6 +8,7 @@ import { QuizBanner } from "@/components/sections/QuizBanner";
 import { Transformation } from "@/components/sections/Transformation";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
+import { Grooming } from "@/components/sections/Grooming";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { ServiceAreas } from "@/components/sections/ServiceAreas";
@@ -21,7 +22,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Adiestramiento canino con metodo. Resultados reales.",
   description:
-    "Escuela canina, adiestramiento y modificacion de conducta a domicilio en zona norte y oeste del GBA y CABA. Recupera la convivencia con tu perro en pocas semanas. Hace tu diagnostico online gratis.",
+    "Escuela canina, adiestramiento, modificacion de conducta y peluqueria canina (banos, corte y deslanado) en zona norte y oeste del GBA y CABA. Recupera la convivencia con tu perro en pocas semanas. Hace tu diagnostico online gratis.",
 };
 
 export default function HomePage() {
@@ -52,6 +53,7 @@ export default function HomePage() {
       <Transformation />
       <HowItWorks />
       <ServicesGrid />
+      <Grooming />
       <Testimonials />
       <ServiceAreas />
       <FAQSection />

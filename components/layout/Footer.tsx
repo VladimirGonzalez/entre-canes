@@ -140,6 +140,14 @@ export function Footer() {
               )}
               <li>
                 <Link
+                  href="/servicios#peluqueria"
+                  className="text-brand-slate transition-colors hover:text-brand-ink"
+                >
+                  Peluquería canina — baños y corte
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/tienda"
                   className="text-brand-slate transition-colors hover:text-brand-ink"
                 >
