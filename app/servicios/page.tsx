@@ -3,7 +3,6 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
-import { Grooming } from "@/components/sections/Grooming";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -16,8 +15,8 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Servicios — Adiestramiento, conducta y educación canina",
   description: GIC_ENABLED
-    ? "Programas de adiestramiento básico, modificación de conducta, Grupos GIC, educación temprana para cachorros y peluquería canina (baños, corte y deslanado). Plan a medida."
-    : "Programas de adiestramiento básico, modificación de conducta, educación temprana para cachorros, asesoramiento a domicilio y peluquería canina (baños, corte y deslanado). Plan a medida.",
+    ? "Programas de adiestramiento básico, modificación de conducta, Grupos GIC y educación temprana para cachorros. Plan a medida. Resultados sostenibles."
+    : "Programas de adiestramiento básico, modificación de conducta, educación temprana para cachorros y asesoramiento a domicilio. Plan a medida. Resultados sostenibles.",
 };
 
 export default function ServiciosPage() {
@@ -40,15 +39,12 @@ export default function ServiciosPage() {
               Trabajamos con programas pensados según la edad, el caso y la
               dinámica de cada familia. No vendemos paquetes que sirven para todos:
               evaluamos primero, planificamos después y acompañamos hasta el final.
-              Y si además necesitás baño, corte o deslanado, tenemos peluquería
-              canina con el mismo criterio de manejo.
             </p>
           </Reveal>
         </Container>
       </section>
 
       <ServicesGrid showAll showHeader={false} />
-      <Grooming />
       <HowItWorks />
       <FAQSection />
       <FinalCTA initialMonth={agendaMonth()} />

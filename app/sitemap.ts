@@ -2,11 +2,15 @@ import type { MetadataRoute } from "next";
 import { SITE, GIC_ENABLED } from "@/lib/constants";
 import { ZONAS } from "@/lib/zonas";
 
+const isZonePage = (path: string) =>
+  path.startsWith("/zonas/") || path.startsWith("/peluqueria/");
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;
   const routes = [
     "",
     "/servicios",
+    "/peluqueria",
     ...(GIC_ENABLED ? ["/gic"] : []),
     "/tienda",
     "/sobre-nosotros",
@@ -14,12 +18,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contacto",
     "/zonas",
     ...ZONAS.map((z) => `/zonas/${z.slug}`),
+    ...ZONAS.map((z) => `/peluqueria/${z.slug}`),
   ];
   const now = new Date();
   return routes.map((path) => ({
     url: `${base}${path}`,
     lastModified: now,
-    changeFrequency: path.startsWith("/zonas/") ? "monthly" : "weekly",
-    priority: path === "" ? 1 : path.startsWith("/zonas/") ? 0.7 : 0.8,
+    changeFrequency: isZonePage(path) ? "monthly" : "weekly",
+    priority: path === "" ? 1 : isZonePage(path) ? 0.7 : 0.8,
   }));
 }

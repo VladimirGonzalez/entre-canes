@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { MessageCircle, Sparkles } from "lucide-react";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
 import { QuizCTA } from "@/components/ui/QuizCTA";
 import { trackEvent } from "@/lib/analytics";
+import { groomingMessageForPath } from "@/lib/peluqueria";
 
 /**
  * Sticky bar mobile-only. Aparece al pasar el primer viewport y empuja
@@ -13,6 +15,7 @@ import { trackEvent } from "@/lib/analytics";
  */
 export function StickyMobileCTA() {
   const [visible, setVisible] = useState(false);
+  const groomingMessage = groomingMessageForPath(usePathname());
 
   useEffect(() => {
     const onScroll = () => {
@@ -33,6 +36,25 @@ export function StickyMobileCTA() {
     >
       <div className="border-t border-brand-line bg-white/95 backdrop-blur-md">
         <div className="mx-auto flex max-w-md gap-2 px-3 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
+          {groomingMessage ? (
+            // En peluquería no ofrecemos el quiz de adiestramiento:
+            // un solo CTA, directo al turno.
+            <a
+              href={buildWhatsAppLink(groomingMessage)}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
+                trackEvent("cta_whatsapp_click", {
+                  source: "mobile-bar-peluqueria",
+                })
+              }
+              className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#25D366] py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1EB855]"
+            >
+              <MessageCircle className="h-4 w-4" />
+              Pedir turno de peluquería
+            </a>
+          ) : (
+            <>
           <a
             href={buildWhatsAppLink(WHATSAPP_MESSAGES.default)}
             target="_blank"
@@ -51,6 +73,8 @@ export function StickyMobileCTA() {
             <Sparkles className="h-4 w-4" />
             Diagnóstico gratis
           </QuizCTA>
+            </>
+          )}
         </div>
       </div>
     </div>

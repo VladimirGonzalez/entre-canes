@@ -1,14 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X } from "lucide-react";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
+import { groomingMessageForPath } from "@/lib/peluqueria";
 
 export function WhatsAppFloat() {
   const [showHint, setShowHint] = useState(false);
   const [hintDismissed, setHintDismissed] = useState(false);
+  const groomingMessage = groomingMessageForPath(usePathname());
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -39,19 +42,29 @@ export function WhatsAppFloat() {
             >
               <X className="h-3 w-3" />
             </button>
-            <p className="font-medium text-brand-ink">¿Necesitás ayuda con tu perro?</p>
+            <p className="font-medium text-brand-ink">
+              {groomingMessage
+                ? "¿Le toca baño a tu perro?"
+                : "¿Necesitás ayuda con tu perro?"}
+            </p>
             <p className="mt-1 text-brand-slate">
-              Escribinos por WhatsApp. Respondemos en menos de 1 hora.
+              {groomingMessage
+                ? "Pedí tu turno por WhatsApp. Te pasamos el valor antes de confirmar."
+                : "Escribinos por WhatsApp. Respondemos en menos de 1 hora."}
             </p>
           </motion.div>
         )}
       </AnimatePresence>
 
       <a
-        href={buildWhatsAppLink(WHATSAPP_MESSAGES.default)}
+        href={buildWhatsAppLink(groomingMessage ?? WHATSAPP_MESSAGES.default)}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() => trackEvent("cta_whatsapp_click", { source: "float" })}
+        onClick={() =>
+          trackEvent("cta_whatsapp_click", {
+            source: groomingMessage ? "float-peluqueria" : "float",
+          })
+        }
         aria-label="Abrir WhatsApp"
         className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-card transition-all duration-300 hover:scale-105 hover:bg-[#1EB855] hover:shadow-lg sm:h-16 sm:w-16"
       >

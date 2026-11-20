@@ -84,6 +84,7 @@ export type NavItem = {
 const ALL_NAVIGATION: NavItem[] = [
   { label: "Inicio", href: "/" },
   { label: "Servicios", href: "/servicios" },
+  { label: "Peluquería", href: "/peluqueria" },
   {
     label: "Grupos GIC",
     href: "/gic",
@@ -232,72 +233,6 @@ const ALL_SERVICES: Service[] = [
 export const SERVICES: Service[] = ALL_SERVICES.filter(
   (s) => GIC_ENABLED || s.slug !== "gic"
 );
-
-// ============================================================
-// Peluquería canina — estética e higiene
-// ------------------------------------------------------------
-// Vertical aparte de los programas de adiestramiento: se muestra
-// como sección propia en Inicio y /servicios (ancla #peluqueria).
-//
-// TODO (datos del negocio, completar cuando estén):
-//   - Precios o rango por tamaño de perro.
-//   - Si el turno es en local o a domicilio (y en qué zonas).
-//   - Cuánto dura un turno típico.
-// Mientras tanto el copy deriva todo a WhatsApp a propósito:
-// así nadie se va con una expectativa equivocada.
-// ============================================================
-export type GroomingItem = {
-  icon: "Bath" | "Scissors" | "Wind" | "PawPrint" | "Ear" | "Heart";
-  title: string;
-  copy: string;
-};
-
-export const GROOMING = {
-  eyebrow: "Peluquería canina",
-  title: "Baños, corte y estética, con manejo sin estrés.",
-  subtitle:
-    "Además de educar perros, los bañamos y los dejamos impecables. Y como somos adiestradores, sabemos leer al perro: trabajamos con calma, sin forcejeos y respetando su tiempo.",
-  items: [
-    {
-      icon: "Bath",
-      title: "Baño completo",
-      copy: "Productos elegidos según su piel y su tipo de pelo, secado profesional y perfumado final.",
-    },
-    {
-      icon: "Scissors",
-      title: "Corte y arreglo",
-      copy: "Corte de raza o a tu gusto, con arreglo de cara, patas y zona higiénica.",
-    },
-    {
-      icon: "Wind",
-      title: "Deslanado y cepillado",
-      copy: "Para perros de doble capa: sacamos el pelo muerto y baja muchísimo la caída de pelo en casa.",
-    },
-    {
-      icon: "PawPrint",
-      title: "Uñas y almohadillas",
-      copy: "Corte de uñas a la medida justa y pelo entre los dedos, para que camine cómodo.",
-    },
-    {
-      icon: "Ear",
-      title: "Higiene de oídos y ojos",
-      copy: "Limpieza suave de oídos, lagrimal y pliegues. Si vemos algo raro, te avisamos para que lo vea el veterinario.",
-    },
-    {
-      icon: "Heart",
-      title: "Perros que no se dejan tocar",
-      copy: "Si tiembla, muerde la toalla o no deja que le toquen las patas, lo trabajamos por etapas y sin pelear.",
-    },
-  ] as GroomingItem[],
-  perks: [
-    "Turno asignado y tiempo estimado antes de dejarlo",
-    "Manejo con lectura del lenguaje canino, sin ataduras forzadas",
-    "Te contamos cómo quedó y qué vimos en su piel y su pelaje",
-    "Pautas de cepillado en casa para estirar el próximo turno",
-  ],
-  note: "Los baños medicados los hacemos siguiendo la indicación de tu veterinario.",
-  whatsappMessage: WHATSAPP_MESSAGES.peluqueria,
-};
 
 // ============================================================
 // Grupos GIC — Grupos de Interacción Canina
@@ -575,10 +510,6 @@ const ALL_FAQ: { q: string; a: string; gicOnly?: boolean }[] = [
   {
     q: "¿Atienden a domicilio? ¿Qué zonas cubren?",
     a: "Sí, trabajamos a domicilio en CABA y gran parte del GBA: San Miguel, Muñiz, Bella Vista, Los Polvorines, Grand Bourg, Villa de Mayo, Malvinas Argentinas, Don Torcuato, Hurlingham, El Palomar, Caseros, San Isidro, Martínez, Olivos, Vicente López y San Fernando. Si tu zona no está en la lista, consultanos igual. Es ideal cuando los problemas aparecen en casa o en tu barrio: trabajamos en contexto real.",
-  },
-  {
-    q: "¿Hacen peluquería canina? ¿Baños y cortes?",
-    a: "Sí. Hacemos baño completo, corte y arreglo, deslanado, corte de uñas e higiene de oídos y ojos. La ventaja de que lo haga un adiestrador es el manejo: si tu perro se pone tenso, tiembla o no deja que le toquen las patas, lo trabajamos por etapas en vez de forzarlo. Los turnos se coordinan por WhatsApp y los baños medicados los hacemos con indicación de tu veterinario.",
   },
   {
     q: "¿Qué método usan? ¿Es entrenamiento positivo?",

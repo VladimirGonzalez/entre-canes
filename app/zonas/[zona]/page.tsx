@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Script from "next/script";
 import {
   MapPin,
   MessageCircle,
@@ -64,12 +64,8 @@ export default function ZonaPage({ params }: Props) {
   return (
     <>
       {/* JSON-LD: Service localizado */}
-      <Script
-        id={`ld-service-${zona.slug}`}
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+      <JsonLd
+        data={{
             "@context": "https://schema.org",
             "@type": "Service",
             name: `Adiestramiento canino en ${zona.name}`,
@@ -83,8 +79,7 @@ export default function ZonaPage({ params }: Props) {
                   : `${zona.name}, ${zona.partido}, Buenos Aires, Argentina`,
             },
             url: `${SITE.url}/zonas/${zona.slug}`,
-          }),
-        }}
+          }}
       />
 
       {/* Page hero */}

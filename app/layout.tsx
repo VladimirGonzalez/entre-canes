@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import Script from "next/script";
@@ -96,12 +97,8 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col">
         {/* JSON-LD: LocalBusiness */}
-        <Script
-          id="ld-localbusiness"
-          type="application/ld+json"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+        <JsonLd
+          data={{
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "@id": `${SITE.url}/#localbusiness`,
@@ -134,8 +131,7 @@ export default function RootLayout({
                 "Ansiedad por separación",
                 "Peluquería y estética canina",
               ],
-            }),
-          }}
+            }}
         />
 
         {/* Google Analytics 4 */}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Script from "next/script";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQ } from "@/lib/constants";
 import { Hero } from "@/components/sections/Hero";
 import { BrandStrip } from "@/components/sections/BrandStrip";
@@ -8,7 +8,6 @@ import { QuizBanner } from "@/components/sections/QuizBanner";
 import { Transformation } from "@/components/sections/Transformation";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
-import { Grooming } from "@/components/sections/Grooming";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { ServiceAreas } from "@/components/sections/ServiceAreas";
@@ -22,19 +21,15 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Adiestramiento canino con metodo. Resultados reales.",
   description:
-    "Escuela canina, adiestramiento, modificacion de conducta y peluqueria canina (banos, corte y deslanado) en zona norte y oeste del GBA y CABA. Recupera la convivencia con tu perro en pocas semanas. Hace tu diagnostico online gratis.",
+    "Escuela canina, adiestramiento y modificacion de conducta a domicilio en zona norte y oeste del GBA y CABA. Recupera la convivencia con tu perro en pocas semanas. Hace tu diagnostico online gratis.",
 };
 
 export default function HomePage() {
   return (
     <>
       {/* JSON-LD: FAQPage (rich results en Google) */}
-      <Script
-        id="ld-faq"
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+      <JsonLd
+        data={{
             "@context": "https://schema.org",
             "@type": "FAQPage",
             mainEntity: FAQ.map((item) => ({
@@ -42,8 +37,7 @@ export default function HomePage() {
               name: item.q,
               acceptedAnswer: { "@type": "Answer", text: item.a },
             })),
-          }),
-        }}
+          }}
       />
       <Hero initialMonth={agendaMonth()} />
       <SocialProof />
@@ -53,7 +47,6 @@ export default function HomePage() {
       <Transformation />
       <HowItWorks />
       <ServicesGrid />
-      <Grooming />
       <Testimonials />
       <ServiceAreas />
       <FAQSection />
