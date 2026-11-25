@@ -41,12 +41,27 @@ export const SOCIAL = {
     process.env.NEXT_PUBLIC_TIKTOK || "https://tiktok.com/@dog._._.school",
 };
 
-/** Construye un link de WhatsApp con mensaje pre-cargado */
-export function buildWhatsAppLink(message?: string) {
-  const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || CONTACT.whatsapp;
+// Peluquería canina tiene su propio WhatsApp: los turnos de baño y corte
+// no llegan al mismo número que las consultas de adiestramiento.
+export const GROOMING_CONTACT = {
+  // Formato internacional sin + ni espacios. Ej: 54 9 11 7114-2069 -> 5491171142069
+  whatsapp:
+    process.env.NEXT_PUBLIC_WHATSAPP_PELUQUERIA || "5491171142069",
+  phone: process.env.NEXT_PUBLIC_PHONE_PELUQUERIA || "+54 9 11 7114-2069",
+};
+
+/** Construye un link de WhatsApp (adiestramiento) con mensaje pre-cargado */
+export function buildWhatsAppLink(message?: string, number?: string) {
+  number =
+    number || process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || CONTACT.whatsapp;
   const base = `https://wa.me/${number}`;
   if (!message) return base;
   return `${base}?text=${encodeURIComponent(message)}`;
+}
+
+/** Link de WhatsApp al número de peluquería canina */
+export function buildGroomingWhatsAppLink(message?: string) {
+  return buildWhatsAppLink(message, GROOMING_CONTACT.whatsapp);
 }
 
 export const WHATSAPP_MESSAGES = {

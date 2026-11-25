@@ -14,7 +14,7 @@
 // así nadie se va con una expectativa equivocada. Cuando estén,
 // sumarlos acá y en GROOMING_FAQ (la pregunta de precio).
 // ============================================================
-import { CONTACT, SITE, WHATSAPP_MESSAGES } from "@/lib/constants";
+import { GROOMING_CONTACT, SITE, WHATSAPP_MESSAGES } from "@/lib/constants";
 import { ZONAS, type Zona } from "@/lib/zonas";
 
 export type GroomingItem = {
@@ -182,7 +182,7 @@ export const GROOMING_FAQ: QA[] = [
   },
   {
     q: "¿Cómo pido un turno de peluquería canina?",
-    a: `Por WhatsApp al ${CONTACT.phone}. Contanos raza, edad, largo de pelo y cómo se porta cuando lo manipulan, y te respondemos con el valor y el turno más cercano.`,
+    a: `Por WhatsApp al ${GROOMING_CONTACT.phone}. Contanos raza, edad, largo de pelo y cómo se porta cuando lo manipulan, y te respondemos con el valor y el turno más cercano.`,
   },
 ];
 
@@ -206,7 +206,7 @@ export function groomingZonaFAQ(z: Zona): QA[] {
     },
     {
       q: `¿Cómo pido turno de peluquería canina en ${z.name}?`,
-      a: `Escribinos por WhatsApp al ${CONTACT.phone} contando que sos de ${z.name}, la raza de tu perro y cómo se porta cuando lo manipulan. Te respondemos con el valor y el turno más cercano.`,
+      a: `Escribinos por WhatsApp al ${GROOMING_CONTACT.phone} contando que sos de ${z.name}, la raza de tu perro y cómo se porta cuando lo manipulan. Te respondemos con el valor y el turno más cercano.`,
     },
   ];
 }
@@ -220,6 +220,21 @@ function place(z: Zona) {
   return {
     "@type": "Place",
     name: `${zonaUbicacion(z)}, Buenos Aires, Argentina`,
+  };
+}
+
+/** Teléfono propio de peluquería, como canal del servicio. */
+function groomingChannel() {
+  return {
+    "@type": "ServiceChannel",
+    name: "Turnos de peluquería canina por WhatsApp",
+    servicePhone: {
+      "@type": "ContactPoint",
+      telephone: GROOMING_CONTACT.phone.replace(/[^+\d]/g, ""),
+      contactType: "Turnos de peluquería canina",
+      availableLanguage: "es",
+    },
+    serviceUrl: `https://wa.me/${GROOMING_CONTACT.whatsapp}`,
   };
 }
 
@@ -284,6 +299,7 @@ export function groomingSchema(description: string) {
         provider: { "@id": LOCAL_BUSINESS_ID },
         areaServed: ZONAS.map(place),
         hasOfferCatalog: offerCatalog(),
+        availableChannel: groomingChannel(),
       },
       {
         "@type": "WebPage",
@@ -319,6 +335,7 @@ export function groomingZonaSchema(z: Zona, description: string) {
         provider: { "@id": LOCAL_BUSINESS_ID },
         areaServed: place(z),
         hasOfferCatalog: offerCatalog(),
+        availableChannel: groomingChannel(),
         isRelatedTo: { "@id": `${SITE.url}/peluqueria#service` },
       },
       {

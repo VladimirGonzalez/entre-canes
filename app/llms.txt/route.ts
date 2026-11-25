@@ -4,7 +4,14 @@
 // Se genera desde las mismas constantes que el sitio, así que nunca
 // queda desactualizado respecto del contenido real.
 // ============================================================
-import { CONTACT, FAQ, SERVICES, SITE, SOCIAL } from "@/lib/constants";
+import {
+  CONTACT,
+  FAQ,
+  GROOMING_CONTACT,
+  SERVICES,
+  SITE,
+  SOCIAL,
+} from "@/lib/constants";
 import { ZONAS } from "@/lib/zonas";
 import { GROOMING, GROOMING_FAQ, ZONAS_LISTA } from "@/lib/peluqueria";
 
@@ -19,7 +26,8 @@ export function GET() {
     "",
     "## Contacto",
     "",
-    `- WhatsApp y teléfono: ${CONTACT.phone}`,
+    `- WhatsApp de adiestramiento: ${CONTACT.phone}`,
+    `- WhatsApp de peluquería canina (turnos de baño y corte): ${GROOMING_CONTACT.phone}`,
     `- Email: ${CONTACT.email}`,
     `- Sitio: ${u}`,
     `- Instagram: ${SOCIAL.instagram}`,
@@ -38,7 +46,7 @@ export function GET() {
     ...GROOMING.items.map((i) => `- ${i.title}: ${i.copy}`),
     `- ${GROOMING.note}`,
     `- Zonas: ${ZONAS_LISTA}.`,
-    `- Turnos: por WhatsApp al ${CONTACT.phone}. El valor depende del tamaño del perro y del tipo y estado del pelo; se informa antes de confirmar.`,
+    `- Turnos: por WhatsApp al ${GROOMING_CONTACT.phone} (número exclusivo de peluquería). El valor depende del tamaño del perro y del tipo y estado del pelo; se informa antes de confirmar.`,
     "",
     "### Peluquería canina por zona",
     "",

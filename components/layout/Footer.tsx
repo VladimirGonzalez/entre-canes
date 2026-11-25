@@ -9,6 +9,8 @@ import {
   buildWhatsAppLink,
   WHATSAPP_MESSAGES,
   SERVICES,
+  GROOMING_CONTACT,
+  buildGroomingWhatsAppLink,
   GIC_ENABLED,
 } from "@/lib/constants";
 import { ZONAS } from "@/lib/zonas";
@@ -201,6 +203,18 @@ export function Footer() {
                 >
                   <MessageCircle className="h-4 w-4 shrink-0" />
                   WhatsApp
+                </a>
+              </li>
+              <li>
+                <a
+                  href={buildGroomingWhatsAppLink(WHATSAPP_MESSAGES.peluqueria)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-brand-slate transition-colors hover:text-brand-ink"
+                  aria-label={`WhatsApp de peluquería canina: ${GROOMING_CONTACT.phone}`}
+                >
+                  <MessageCircle className="h-4 w-4 shrink-0" />
+                  WhatsApp peluquería
                 </a>
               </li>
               <li>

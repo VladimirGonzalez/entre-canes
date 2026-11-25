@@ -24,7 +24,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionLabel";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
-import { buildWhatsAppLink } from "@/lib/constants";
+import { buildGroomingWhatsAppLink } from "@/lib/constants";
 import { GROOMING, type GroomingItem, type QA } from "@/lib/peluqueria";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
@@ -59,7 +59,7 @@ export function GroomingWhatsAppButton({
 }) {
   return (
     <Button
-      href={buildWhatsAppLink(message)}
+      href={buildGroomingWhatsAppLink(message)}
       external
       variant={variant}
       size={size}

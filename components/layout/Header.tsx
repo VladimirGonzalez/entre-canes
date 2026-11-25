@@ -17,17 +17,20 @@ import { Button } from "@/components/ui/Button";
 import { QuizCTA } from "@/components/ui/QuizCTA";
 import {
   NAVIGATION,
+  buildGroomingWhatsAppLink,
   buildWhatsAppLink,
   WHATSAPP_MESSAGES,
   type NavItem,
 } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
+import { groomingMessageForPath } from "@/lib/peluqueria";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const groomingMessage = groomingMessageForPath(pathname);
 
   useEffect(() => {
     setOpen(false);
@@ -158,13 +161,19 @@ export function Header() {
                   Empezar diagnóstico gratis
                 </QuizCTA>
                 <Button
-                  href={buildWhatsAppLink(WHATSAPP_MESSAGES.default)}
+                  href={
+                    groomingMessage
+                      ? buildGroomingWhatsAppLink(groomingMessage)
+                      : buildWhatsAppLink(WHATSAPP_MESSAGES.default)
+                  }
                   external
                   variant="whatsapp"
                   fullWidth
                   onClick={() =>
                     trackEvent("cta_whatsapp_click", {
-                      source: "mobile-menu",
+                      source: groomingMessage
+                        ? "mobile-menu-peluqueria"
+                        : "mobile-menu",
                     })
                   }
                 >

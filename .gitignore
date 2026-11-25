@@ -37,3 +37,4 @@ next-env.d.ts
 
 # herramientas locales (config del dev server para previews)
 /.claude/
+.gstack/

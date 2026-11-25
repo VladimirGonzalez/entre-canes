@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { MessageCircle, Sparkles } from "lucide-react";
-import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
+import {
+  buildGroomingWhatsAppLink,
+  buildWhatsAppLink,
+  WHATSAPP_MESSAGES,
+} from "@/lib/constants";
 import { QuizCTA } from "@/components/ui/QuizCTA";
 import { trackEvent } from "@/lib/analytics";
 import { groomingMessageForPath } from "@/lib/peluqueria";
@@ -40,7 +44,7 @@ export function StickyMobileCTA() {
             // En peluquería no ofrecemos el quiz de adiestramiento:
             // un solo CTA, directo al turno.
             <a
-              href={buildWhatsAppLink(groomingMessage)}
+              href={buildGroomingWhatsAppLink(groomingMessage)}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() =>

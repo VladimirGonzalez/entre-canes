@@ -4,7 +4,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { buildWhatsAppLink, GIC_ENABLED } from "@/lib/constants";
+import {
+  buildGroomingWhatsAppLink,
+  buildWhatsAppLink,
+  GIC_ENABLED,
+} from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -34,6 +38,12 @@ export function ContactForm() {
     message: "",
   });
 
+  // Las consultas de peluquería van a su propio WhatsApp.
+  const whatsappFor = (message: string) =>
+    data.topic === "peluqueria"
+      ? buildGroomingWhatsAppLink(message)
+      : buildWhatsAppLink(message);
+
   const update = <K extends keyof typeof data>(key: K, value: string) =>
     setData((d) => ({ ...d, [key]: value }));
 
@@ -58,7 +68,7 @@ export function ContactForm() {
 
     // Abrimos WhatsApp con el mensaje pre-cargado
     if (typeof window !== "undefined") {
-      window.open(buildWhatsAppLink(text), "_blank", "noopener,noreferrer");
+      window.open(whatsappFor(text), "_blank", "noopener,noreferrer");
     }
     setSubmitted(true);
   };
@@ -81,7 +91,7 @@ export function ContactForm() {
           Si no se abrió automáticamente, tocá el botón de abajo. Te respondemos en menos de 1 hora hábil.
         </p>
         <Button
-          href={buildWhatsAppLink(
+          href={whatsappFor(
             `Hola Entre Canes! Soy ${data.name}, te escribo desde el formulario web.`
           )}
           external

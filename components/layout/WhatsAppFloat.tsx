@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X } from "lucide-react";
-import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
+import {
+  buildGroomingWhatsAppLink,
+  buildWhatsAppLink,
+  WHATSAPP_MESSAGES,
+} from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import { groomingMessageForPath } from "@/lib/peluqueria";
 
@@ -57,7 +61,11 @@ export function WhatsAppFloat() {
       </AnimatePresence>
 
       <a
-        href={buildWhatsAppLink(groomingMessage ?? WHATSAPP_MESSAGES.default)}
+        href={
+          groomingMessage
+            ? buildGroomingWhatsAppLink(groomingMessage)
+            : buildWhatsAppLink(WHATSAPP_MESSAGES.default)
+        }
         target="_blank"
         rel="noopener noreferrer"
         onClick={() =>
